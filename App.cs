@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 
 using AdventOfCode;
-using AdventOfCode.Lib;
+using adventofcode.Lib;
 
 var tsolvers = Assembly.GetEntryAssembly()!.GetTypes()
     .Where(t => t.GetTypeInfo().IsClass && typeof(ISolver).IsAssignableFrom(t))

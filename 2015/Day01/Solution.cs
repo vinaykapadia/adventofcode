@@ -1,16 +1,29 @@
 namespace AdventOfCode._2015.Day01;
 
-[ProblemName("")]      
-internal class Solution : ISolver
-{
+[ProblemName("Not Quite Lisp")]      
+internal class Solution : Solver {
 
     public object PartOne(string input)
     {
-        return 0;
+        var floor = 0;
+        foreach (var c in input)
+        {
+            if (c == '(') floor++;
+            if (c == ')') floor--;
+        }
+
+        return floor;
     }
 
-    public object PartTwo(string input)
-    {
-        return 0;
+    public object PartTwo(string input) {
+        var floor = 0;
+        for (var i = 0; i < input.Length; i++)
+        {
+            if (input[i] == '(') floor++;
+            if (input[i] == ')') floor--;
+            if (floor == -1) return i + 1;
+        }
+
+        return -1;
     }
 }

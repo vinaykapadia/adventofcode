@@ -23,6 +23,8 @@ public static class StringExtensions {
     {
 	    return new ColoredString(c, st);
     }
+
+    public static string[] Lines(this string st) => st.Split('\n');
 }
 
 public record ColoredString(ConsoleColor c, string st);

@@ -1,13 +1,13 @@
 using AdventOfCode.Lib.Model;
 
-namespace AdventOfCode.Lib.Generator;
+namespace adventofcode.Lib.Generator;
 
 internal class SolutionTemplateGenerator {
     public string Generate(Problem problem) {
         return $@"namespace AdventOfCode._{problem.Year}.Day{problem.Day:00};
              |
              |[ProblemName(""{problem.Title}"")]      
-             |internal class Solution : ISolver
+             |internal class Solution : Solver
              |{{
              |
              |    public object PartOne(string input)
