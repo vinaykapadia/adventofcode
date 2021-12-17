@@ -2,14 +2,14 @@ original source: [https://adventofcode.com/2018/day/17](https://adventofcode.com
 ## --- Day 17: Reservoir Research ---
 You arrive in the year 18. If it weren't for the coat you got in 1018, you would be very cold: the North Pole base hasn't even been constructed.
 
-Rather, it hasn't been constructed *yet*.  The Elves are making a little progress, but there's not a lot of liquid water in this climate, so they're getting very dehydrated.  Maybe there's more underground?
+Rather, it hasn't been constructed <em>yet</em>.  The Elves are making a little progress, but there's not a lot of liquid water in this climate, so they're getting very dehydrated.  Maybe there's more underground?
 
-You scan a two-dimensional vertical slice of the ground nearby and discover that it is mostly *sand* with veins of *clay*.  The scan only provides data with a granularity of *square meters*, but it should be good enough to determine how much water is trapped there. In the scan, `x` represents the distance to the right, and `y` represents the distance down. There is also a *spring of water* near the surface at `x=500, y=0`. The scan identifies *which square meters are clay* (your puzzle input).
+You scan a two-dimensional vertical slice of the ground nearby and discover that it is mostly <em>sand</em> with veins of <em>clay</em>.  The scan only provides data with a granularity of <em>square meters</em>, but it should be good enough to determine how much water is trapped there. In the scan, <code>x</code> represents the distance to the right, and <code>y</code> represents the distance down. There is also a <em>spring of water</em> near the surface at <code>x=500, y=0</code>. The scan identifies <em>which square meters are clay</em> (your puzzle input).
 
 For example, suppose your scan shows the following veins of clay:
 
-```
-x=495, y=2..7
+<pre>
+<code>x=495, y=2..7
 y=7, x=495..501
 x=501, y=3..7
 x=498, y=2..4
@@ -17,12 +17,13 @@ x=506, y=1..2
 x=498, y=10..13
 x=504, y=10..13
 y=13, x=498..504
-```
+</code>
+</pre>
 
-Rendering clay as `#`, sand as `.`, and the water spring as `+`, and with `x` increasing to the right and `y` increasing downward, this becomes:
+Rendering clay as <code>#</code>, sand as <code>.</code>, and the water spring as <code>+</code>, and with <code>x</code> increasing to the right and <code>y</code> increasing downward, this becomes:
 
-```
-   44444455555555
+<pre>
+<code>   44444455555555
    99999900000000
    45678901234567
  0 ......+.......
@@ -39,14 +40,15 @@ Rendering clay as `#`, sand as `.`, and the water spring as `+`, and with `x` in
 11 ....#.....#...
 12 ....#.....#...
 13 ....#######...
-```
+</code>
+</pre>
 
-The spring of water will produce water *forever*. Water can move through sand, but is blocked by clay. Water *always moves down* when possible, and spreads to the left and right otherwise, filling space that has clay on both sides and falling out otherwise.
+The spring of water will produce water <em>forever</em>. Water can move through sand, but is blocked by clay. Water <em>always moves down</em> when possible, and spreads to the left and right otherwise, filling space that has clay on both sides and falling out otherwise.
 
-For example, if five squares of water are created, they will flow downward until they reach the clay and settle there. Water that has come to rest is shown here as `~`, while sand through which water has passed (but which is now dry again) is shown as `|`:
+For example, if five squares of water are created, they will flow downward until they reach the clay and settle there. Water that has come to rest is shown here as <code>~</code>, while sand through which water has passed (but which is now dry again) is shown as <code>|</code>:
 
-```
-......+.......
+<pre>
+<code>......+.......
 ......|.....#.
 .#..#.|.....#.
 .#..#.|#......
@@ -60,12 +62,13 @@ For example, if five squares of water are created, they will flow downward until
 ....#.....#...
 ....#.....#...
 ....#######...
-```
+</code>
+</pre>
 
 Two squares of water can't occupy the same location.  If another five squares of water are created, they will settle on the first five, filling the clay reservoir a little more:
 
-```
-......+.......
+<pre>
+<code>......+.......
 ......|.....#.
 .#..#.|.....#.
 .#..#.|#......
@@ -79,12 +82,13 @@ Two squares of water can't occupy the same location.  If another five squares of
 ....#.....#...
 ....#.....#...
 ....#######...
-```
+</code>
+</pre>
 
 Water pressure does not apply in this scenario. If another four squares of water are created, they will stay on the right side of the barrier, and no water will reach the left side:
 
-```
-......+.......
+<pre>
+<code>......+.......
 ......|.....#.
 .#..#.|.....#.
 .#..#~~#......
@@ -98,14 +102,15 @@ Water pressure does not apply in this scenario. If another four squares of water
 ....#.....#...
 ....#.....#...
 ....#######...
-```
+</code>
+</pre>
 
 At this point, the top reservoir overflows. While water can reach the tiles above the surface of the water, it cannot settle there, and so the next five squares of water settle like this:
 
-```
-......+.......
+<pre>
+<code>......+.......
 ......|.....#.
-.#..#*|*|||...#.
+.#..#<em>|</em>|||...#.
 .#..#~~#|.....
 .#..#~~#|.....
 .#~~~~~#|.....
@@ -117,14 +122,15 @@ At this point, the top reservoir overflows. While water can reach the tiles abov
 ....#...|.#...
 ....#~~~~~#...
 ....#######...
-```
+</code>
+</pre>
 
-Note especially the leftmost `|`: the new squares of water can reach this tile, but cannot stop there.  Instead, eventually, they all fall to the right and settle in the reservoir below.
+Note especially the leftmost <code>|</code>: the new squares of water can reach this tile, but cannot stop there.  Instead, eventually, they all fall to the right and settle in the reservoir below.
 
 After 10 more squares of water, the bottom reservoir is also full:
 
-```
-......+.......
+<pre>
+<code>......+.......
 ......|.....#.
 .#..#||||...#.
 .#..#~~#|.....
@@ -138,12 +144,13 @@ After 10 more squares of water, the bottom reservoir is also full:
 ....#~~~~~#...
 ....#~~~~~#...
 ....#######...
-```
+</code>
+</pre>
 
 Finally, while there is nowhere left for the water to settle, it can reach a few more tiles before overflowing beyond the bottom of the scanned data:
 
-```
-......+.......    (line not counted: above minimum y value)
+<pre>
+<code>......+.......    (line not counted: above minimum y value)
 ......|.....#.
 .#..#||||...#.
 .#..#~~#|.....
@@ -160,20 +167,13 @@ Finally, while there is nowhere left for the water to settle, it can reach a few
 ...|.......|..    (line not counted: below maximum y value)
 ...|.......|..    (line not counted: below maximum y value)
 ...|.......|..    (line not counted: below maximum y value)
-```
+</code>
+</pre>
 
-How many tiles can be reached by the water?  *To prevent counting forever*, ignore tiles with a `y` coordinate smaller than the smallest `y` coordinate in your scan data or larger than the largest one. Any `x` coordinate is valid. In this example, the lowest `y` coordinate given is `1`, and the highest is `13`, causing the water spring (in row `0`) and the water falling off the bottom of the render (in rows `14` through infinity) to be ignored.
+How many tiles can be reached by the water?  <em>To prevent counting forever</em>, ignore tiles with a <code>y</code> coordinate smaller than the smallest <code>y</code> coordinate in your scan data or larger than the largest one. Any <code>x</code> coordinate is valid. In this example, the lowest <code>y</code> coordinate given is <code>1</code>, and the highest is <code>13</code>, causing the water spring (in row <code>0</code>) and the water falling off the bottom of the render (in rows <code>14</code> through infinity) to be ignored.
 
-So, in the example above, counting both water at rest (`~`) and other sand tiles the water can hypothetically reach (`|`), the total number of tiles the water can reach is `*57*`.
+So, in the example above, counting both water at rest (<code>~</code>) and other sand tiles the water can hypothetically reach (<code>|</code>), the total number of tiles the water can reach is <code><em>57</em></code>.
 
-*How many tiles can the water reach* within the range of `y` values in your scan?
-
-
-## --- Part Two ---
-After a very long time, the water spring will run dry. How much water will be retained?
-
-In the example above, water that won't eventually drain out is shown as `~`, a total of `*29*` tiles.
-
-*How many water tiles are left* after the water spring stops producing water and all remaining water not at rest has drained?
+<em>How many tiles can the water reach</em> within the range of <code>y</code> values in your scan?
 
 

@@ -1,20 +1,20 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Text;
 
 namespace AdventOfCode.Y2017.Day04;
 
-[ProblemName("High-Entropy Passphrases")]
+[ProblemName("High-Entropy Passphrases")]      
 class Solution : Solver {
 
-    public object PartOne(string lines) =>
-        ValidLineCount(lines, word => word);
+    public object PartOne(string input) {
+        return 0;
+    }
 
-    public object PartTwo(string lines) =>
-        ValidLineCount(lines, word => string.Concat(word.OrderBy(ch => ch)));
-
-    int ValidLineCount(string lines, Func<string, string> normalizer) =>
-        lines.Split('\n').Where(line => IsValidLine(line.Split(' '), normalizer)).Count();
-
-    bool IsValidLine(string[] words, Func<string, string> normalizer) =>
-        words.Select(normalizer).Distinct().Count() == words.Count();
+    public object PartTwo(string input) {
+        return 0;
+    }
 }

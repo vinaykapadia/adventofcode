@@ -1,20 +1,20 @@
+using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Text;
 
 namespace AdventOfCode.Y2015.Day01;
 
-[ProblemName("Not Quite Lisp")]
+[ProblemName("Not Quite Lisp")]      
 class Solution : Solver {
 
-    public object PartOne(string input) => Levels(input).Last().level;
+    public object PartOne(string input) {
+        return 0;
+    }
 
-    public object PartTwo(string input) => Levels(input).First(p => p.level == -1).idx;
-
-    IEnumerable<(int idx, int level)> Levels(string input){
-        var level = 0;
-        for (var i = 0; i < input.Length; i++) {
-            level += input[i] == '(' ? 1 : -1;
-            yield return (i+1, level);
-        }
+    public object PartTwo(string input) {
+        return 0;
     }
 }

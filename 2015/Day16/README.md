@@ -9,18 +9,18 @@ So, to avoid sending the card to the wrong person, you need to figure out which 
 The My First Crime Scene Analysis Machine (MFCSAM for short) can detect a few specific compounds in a given sample, as well as how many distinct kinds of those compounds there are. According to the instructions, these are what the MFCSAM can detect:
 
 
- - `children`, by human DNA age analysis.
- - `cats`.  It doesn't differentiate individual breeds.
- - Several seemingly random breeds of dog: `[samoyeds](https://en.wikipedia.org/wiki/Samoyed_%28dog%29)`, `[pomeranians](https://en.wikipedia.org/wiki/Pomeranian_%28dog%29)`, `[akitas](https://en.wikipedia.org/wiki/Akita_%28dog%29)`, and `[vizslas](https://en.wikipedia.org/wiki/Vizsla)`.
- - `goldfish`.  No other kinds of fish.
- - `trees`, all in one group.
- - `cars`, presumably by exhaust or gasoline or something.
- - `perfumes`, which is handy, since many of your Aunts Sue wear a few kinds.
+ - <code>children</code>, by human DNA age analysis.
+ - <code>cats</code>.  It doesn't differentiate individual breeds.
+ - Several seemingly random breeds of dog: <code>[samoyeds](https://en.wikipedia.org/wiki/Samoyed_%28dog%29)</code>, <code>[pomeranians](https://en.wikipedia.org/wiki/Pomeranian_%28dog%29)</code>, <code>[akitas](https://en.wikipedia.org/wiki/Akita_%28dog%29)</code>, and <code>[vizslas](https://en.wikipedia.org/wiki/Vizsla)</code>.
+ - <code>goldfish</code>.  No other kinds of fish.
+ - <code>trees</code>, all in one group.
+ - <code>cars</code>, presumably by exhaust or gasoline or something.
+ - <code>perfumes</code>, which is handy, since many of your Aunts Sue wear a few kinds.
 
 In fact, many of your Aunts Sue have many of these.  You put the wrapping from the gift into the MFCSAM.  It beeps inquisitively at you a few times and then prints out a message on [ticker tape](https://en.wikipedia.org/wiki/Ticker_tape):
 
-```
-children: 3
+<pre>
+<code>children: 3
 cats: 7
 samoyeds: 2
 pomeranians: 3
@@ -30,18 +30,19 @@ goldfish: 5
 trees: 3
 cars: 2
 perfumes: 1
-```
+</code>
+</pre>
 
 You make a list of the things you can remember about each Aunt Sue.  Things missing from your list aren't zero - you simply don't remember the value.
 
-What is the *number* of the Sue that got you the gift?
+What is the <em>number</em> of the Sue that got you the gift?
 
 
 ## --- Part Two ---
 As you're about to send the thank you note, something in the MFCSAM's instructions catches your eye.  Apparently, it has an outdated [retroencabulator](https://www.youtube.com/watch?v=RXJKdh1KZ0w), and so the output from the machine isn't exact values - some of them indicate ranges.
 
-In particular, the `cats` and `trees` readings indicates that there are *greater than* that many (due to the unpredictable nuclear decay of cat dander and tree pollen), while the `pomeranians` and `goldfish` readings indicate that there are *fewer than* that many (due to the modial interaction of magnetoreluctance).
+In particular, the <code>cats</code> and <code>trees</code> readings indicates that there are <em>greater than</em> that many (due to the unpredictable nuclear decay of cat dander and tree pollen), while the <code>pomeranians</code> and <code>goldfish</code> readings indicate that there are <em>fewer than</em> that many (due to the modial interaction of magnetoreluctance).
 
-What is the *number* of the real Aunt Sue?
+What is the <em>number</em> of the real Aunt Sue?
 
 

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
+using System.Runtime.Serialization.Formatters;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using AdventOfCode.Generator;
@@ -15,9 +16,11 @@ using AngleSharp.Io;
 
 namespace AdventOfCode;
 
-class Updater {
+class Updater
+{
 
-    public async Task Update(int year, int day) {
+    public async Task Update(int year, int day)
+    {
 
         var session = GetSession();
         var baseAddress = new Uri("https://adventofcode.com/");
@@ -33,7 +36,8 @@ class Updater {
         var problem = await DownloadProblem(context, baseAddress, year, day);
 
         var dir = Dir(year, day);
-        if (!Directory.Exists(dir)) {
+        if (!Directory.Exists(dir))
+        {
             Directory.CreateDirectory(dir);
         }
 
@@ -50,17 +54,29 @@ class Updater {
         UpdateSolutionTemplate(problem);
     }
 
-    private Uri GetBaseAddress() {
+    public async Task Update(int year)
+    {
+        for (var i = 1; i <= 25; i++)
+        {
+            await Update(year, i);
+        }
+    }
+
+    private Uri GetBaseAddress()
+    {
         return new Uri("https://adventofcode.com");
     }
 
-    private string GetSession() {
-        if (!Environment.GetEnvironmentVariables().Contains("SESSION")) {
-            throw new AocCommuncationError("Specify SESSION environment variable", null);
-        }
-        return Environment.GetEnvironmentVariable("SESSION");
+    private string GetSession()
+    {
+        return File.ReadAllText("session.txt");
+        //if (!Environment.GetEnvironmentVariables().Contains("SESSION")) {
+        //    throw new AocCommuncationError("Specify SESSION environment variable", null);
+        //}
+        //return Environment.GetEnvironmentVariable("SESSION");
     }
-    private IBrowsingContext GetContext() {
+    private IBrowsingContext GetContext()
+    {
 
         var context = BrowsingContext.New(Configuration.Default
             .WithDefaultLoader()
@@ -71,14 +87,16 @@ class Updater {
         return context;
     }
 
-    public async Task Upload(Solver solver) {
+    public async Task Upload(Solver solver)
+    {
 
         var color = Console.ForegroundColor;
         Console.WriteLine();
         var solverResult = Runner.RunSolver(solver);
         Console.WriteLine();
 
-        if (solverResult.errors.Any()) {
+        if (solverResult.errors.Any())
+        {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Uhh-ohh the solution doesn't pass the tests...");
             Console.ForegroundColor = color;
@@ -88,13 +106,18 @@ class Updater {
 
         var problem = await DownloadProblem(GetContext(), GetBaseAddress(), solver.Year(), solver.Day());
 
-        if (problem.Answers.Length == 2) {
+        if (problem.Answers.Length == 2)
+        {
             Console.WriteLine("Both parts of this puzzle are complete!");
             Console.WriteLine();
-        } else if (solverResult.answers.Length <= problem.Answers.Length) {
+        }
+        else if (solverResult.answers.Length <= problem.Answers.Length)
+        {
             Console.WriteLine($"You need to work on part {problem.Answers.Length + 1}");
             Console.WriteLine();
-        } else {
+        }
+        else
+        {
             var level = problem.Answers.Length + 1;
             var answer = solverResult.answers[problem.Answers.Length];
             Console.WriteLine($"Uploading answer ({answer}) for part {level}...");
@@ -125,23 +148,30 @@ class Updater {
             article = Regex.Replace(article, @"\(You guessed.*", "", RegexOptions.Singleline);
             article = Regex.Replace(article, @"  ", "\n", RegexOptions.Singleline);
 
-            if (article.StartsWith("That's the right answer") || article.Contains("You've finished every puzzle")) {
+            if (article.StartsWith("That's the right answer") || article.Contains("You've finished every puzzle"))
+            {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(article);
                 Console.ForegroundColor = color;
                 Console.WriteLine();
                 await Update(solver.Year(), solver.Day());
-            } else if (article.StartsWith("That's not the right answer")) {
+            }
+            else if (article.StartsWith("That's not the right answer"))
+            {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(article);
                 Console.ForegroundColor = color;
                 Console.WriteLine();
-            } else if (article.StartsWith("You gave an answer too recently")) {
+            }
+            else if (article.StartsWith("You gave an answer too recently"))
+            {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(article);
                 Console.ForegroundColor = color;
                 Console.WriteLine();
-            } else {
+            }
+            else
+            {
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(article);
                 Console.ForegroundColor = color;
@@ -149,22 +179,26 @@ class Updater {
         }
     }
 
-    void WriteFile(string file, string content) {
+    void WriteFile(string file, string content)
+    {
         Console.WriteLine($"Writing {file}");
         File.WriteAllText(file, content);
     }
 
     string Dir(int year, int day) => SolverExtensions.WorkingDir(year, day);
 
-    async Task<Calendar> DownloadCalendar(IBrowsingContext context, Uri baseUri, int year) {
+    async Task<Calendar> DownloadCalendar(IBrowsingContext context, Uri baseUri, int year)
+    {
         var document = await context.OpenAsync(baseUri.ToString() + year);
-        if (document.StatusCode != HttpStatusCode.OK) {
+        if (document.StatusCode != HttpStatusCode.OK)
+        {
             throw new AocCommuncationError("Could not fetch calendar", document.StatusCode, document.TextContent);
         }
         return Calendar.Parse(year, document);
     }
 
-    async Task<Problem> DownloadProblem(IBrowsingContext context, Uri baseUri, int year, int day) {
+    async Task<Problem> DownloadProblem(IBrowsingContext context, Uri baseUri, int year, int day)
+    {
         var uri = baseUri + $"{year}/day/{day}";
         var color = Console.ForegroundColor;
         Console.ForegroundColor = ConsoleColor.Green;
@@ -175,7 +209,8 @@ class Updater {
         var input = await context.GetService<IDocumentLoader>().FetchAsync(
                 new DocumentRequest(new Url(baseUri + $"{year}/day/{day}/input"))).Task;
 
-        if (input.StatusCode != HttpStatusCode.OK) {
+        if (input.StatusCode != HttpStatusCode.OK)
+        {
             throw new AocCommuncationError("Could not fetch input", input.StatusCode, new StreamReader(input.Content).ReadToEnd());
         }
 
@@ -185,24 +220,29 @@ class Updater {
         );
     }
 
-    void UpdateReadmeForDay(Problem problem) {
+    void UpdateReadmeForDay(Problem problem)
+    {
         var file = Path.Combine(Dir(problem.Year, problem.Day), "README.md");
         WriteFile(file, problem.ContentMd);
     }
 
-    void UpdateSolutionTemplate(Problem problem) {
+    void UpdateSolutionTemplate(Problem problem)
+    {
         var file = Path.Combine(Dir(problem.Year, problem.Day), "Solution.cs");
-        if (!File.Exists(file)) {
+        if (!File.Exists(file))
+        {
             WriteFile(file, new SolutionTemplateGenerator().Generate(problem));
         }
     }
 
-    void UpdateProjectReadme(int firstYear, int lastYear) {
+    void UpdateProjectReadme(int firstYear, int lastYear)
+    {
         var file = Path.Combine("README.md");
         WriteFile(file, new ProjectReadmeGenerator().Generate(firstYear, lastYear));
     }
 
-    void UpdateReadmeForYear(Calendar calendar) {
+    void UpdateReadmeForYear(Calendar calendar)
+    {
         var file = Path.Combine(SolverExtensions.WorkingDir(calendar.Year), "README.md");
         WriteFile(file, new ReadmeGeneratorForYear().Generate(calendar));
 
@@ -210,19 +250,23 @@ class Updater {
         WriteFile(svg, calendar.ToSvg());
     }
 
-    void UpdateSplashScreen(Calendar calendar) {
+    void UpdateSplashScreen(Calendar calendar)
+    {
         var file = Path.Combine(SolverExtensions.WorkingDir(calendar.Year), "SplashScreen.cs");
         WriteFile(file, new SplashScreenGenerator().Generate(calendar));
     }
 
-    void UpdateInput(Problem problem) {
+    void UpdateInput(Problem problem)
+    {
         var file = Path.Combine(Dir(problem.Year, problem.Day), "input.in");
         WriteFile(file, problem.Input);
     }
 
-    void UpdateRefout(Problem problem) {
+    void UpdateRefout(Problem problem)
+    {
         var file = Path.Combine(Dir(problem.Year, problem.Day), "input.refout");
-        if (problem.Answers.Any()) {
+        if (problem.Answers.Any())
+        {
             WriteFile(file, string.Join("\n", problem.Answers));
         }
     }

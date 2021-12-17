@@ -1,31 +1,19 @@
 original source: [https://adventofcode.com/2019/day/23](https://adventofcode.com/2019/day/23)
 ## --- Day 23: Category Six ---
-The droids have finished repairing as much of the ship as they can.  Their report indicates that this was a *Category 6* disaster - not because it was that bad, but because it destroyed the stockpile of [Category 6](https://en.wikipedia.org/wiki/Category_6_cable) network cables as well as most of the ship's network infrastructure.
+The droids have finished repairing as much of the ship as they can.  Their report indicates that this was a <em>Category 6</em> disaster - not because it was that bad, but because it destroyed the stockpile of [Category 6](https://en.wikipedia.org/wiki/Category_6_cable) network cables as well as most of the ship's network infrastructure.
 
-You'll need to *rebuild the network from scratch*.
+You'll need to <em>rebuild the network from scratch</em>.
 
-The computers on the network are standard [Intcode](9) computers that communicate by sending *packets* to each other.  There are `50` of them in total, each running a copy of the same *Network Interface Controller* (NIC) software (your puzzle input). The computers have *network addresses* `0` through `49`; when each computer boots up, it will request its network address via a single input instruction. Be sure to give each computer a unique network address.
+The computers on the network are standard [Intcode](9) computers that communicate by sending <em>packets</em> to each other.  There are <code>50</code> of them in total, each running a copy of the same <em>Network Interface Controller</em> (NIC) software (your puzzle input). The computers have <em>network addresses</em> <code>0</code> through <code>49</code>; when each computer boots up, it will request its network address via a single input instruction. Be sure to give each computer a unique network address.
 
-Once a computer has received its network address, it will begin doing work and communicating over the network by sending and receiving *packets*. All packets contain *two values* named `X` and `Y`. Packets sent to a computer are queued by the recipient and read in the order they are received.
+Once a computer has received its network address, it will begin doing work and communicating over the network by sending and receiving <em>packets</em>. All packets contain <em>two values</em> named <code>X</code> and <code>Y</code>. Packets sent to a computer are queued by the recipient and read in the order they are received.
 
-To *send* a packet to another computer, the NIC will use *three output instructions* that provide the *destination address* of the packet followed by its `X` and `Y` values.  For example, three output instructions that provide the values `10`, `20`, `30` would send a packet with `X=20` and `Y=30` to the computer with address `10`.
+To <em>send</em> a packet to another computer, the NIC will use <em>three output instructions</em> that provide the <em>destination address</em> of the packet followed by its <code>X</code> and <code>Y</code> values.  For example, three output instructions that provide the values <code>10</code>, <code>20</code>, <code>30</code> would send a packet with <code>X=20</code> and <code>Y=30</code> to the computer with address <code>10</code>.
 
-To *receive* a packet from another computer, the NIC will use an *input instruction*.  If the incoming packet queue is *empty*, provide `-1`.  Otherwise, provide the `X` value of the next packet; the computer will then use a second input instruction to receive the `Y` value for the same packet.  Once both values of the packet are read in this way, the packet is removed from the queue.
+To <em>receive</em> a packet from another computer, the NIC will use an <em>input instruction</em>.  If the incoming packet queue is <em>empty</em>, provide <code>-1</code>.  Otherwise, provide the <code>X</code> value of the next packet; the computer will then use a second input instruction to receive the <code>Y</code> value for the same packet.  Once both values of the packet are read in this way, the packet is removed from the queue.
 
-Note that these input and output instructions never [block](https://en.wikipedia.org/wiki/Blocking_(computing)). Specifically, output instructions do not wait for the sent packet to be received - the computer might send multiple packets before receiving any. Similarly, input instructions do not wait for a packet to arrive - if no packet is waiting, input instructions should receive `-1`.
+Note that these input and output instructions never [block](https://en.wikipedia.org/wiki/Blocking_(computing)). Specifically, output instructions do not wait for the sent packet to be received - the computer might send multiple packets before receiving any. Similarly, input instructions do not wait for a packet to arrive - if no packet is waiting, input instructions should receive <code>-1</code>.
 
-Boot up all `50` computers and attach them to your network.  *What is the `Y` value of the first packet sent to address `255`?*
-
-
-## --- Part Two ---
-Packets sent to address `255` are handled by a device called a NAT (Not Always Transmitting). The NAT is responsible for managing power consumption of the network by blocking certain packets and watching for idle periods in the computers.
-
-If a packet would be sent to address `255`, the NAT receives it instead.  The NAT remembers only the *last* packet it receives; that is, the data in each packet it receives overwrites the NAT's packet memory with the new packet's `X` and `Y` values.
-
-The NAT also monitors all computers on the network.  If all computers have *empty incoming packet queues* and are *continuously trying to receive packets* without sending packets, the network is considered *idle*.
-
-Once the network is idle, the NAT sends *only the last packet it received* to address `0`; this will cause the computers on the network to resume activity.  In this way, the NAT can throttle power consumption of the network when the ship needs power in other areas.
-
-Monitor packets released to the computer at address `0` by the NAT.  *What is the first `Y` value delivered by the NAT to the computer at address `0` twice in a row?*
+Boot up all <code>50</code> computers and attach them to your network.  <em>What is the <code>Y</code> value of the first packet sent to address <code>255</code>?</em>
 
 

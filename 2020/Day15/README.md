@@ -43,18 +43,3 @@ Here are a few more examples:
 Given your starting numbers, <em>what will be the <code>2020</code>th number spoken?</em>
 
 
-## --- Part Two ---
-Impressed, the Elves issue you a challenge: determine the <code>30000000</code>th number spoken. For example, given the same starting numbers as above:
-
-
- - Given <code>0,3,6</code>, the <code>30000000</code>th number spoken is <code>175594</code>.
- - Given <code>1,3,2</code>, the <code>30000000</code>th number spoken is <code>2578</code>.
- - Given <code>2,1,3</code>, the <code>30000000</code>th number spoken is <code>3544142</code>.
- - Given <code>1,2,3</code>, the <code>30000000</code>th number spoken is <code>261214</code>.
- - Given <code>2,3,1</code>, the <code>30000000</code>th number spoken is <code>6895259</code>.
- - Given <code>3,2,1</code>, the <code>30000000</code>th number spoken is <code>18</code>.
- - Given <code>3,1,2</code>, the <code>30000000</code>th number spoken is <code>362</code>.
-
-Given your starting numbers, <em>what will be the <code>30000000</code>th number spoken?</em>
-
-

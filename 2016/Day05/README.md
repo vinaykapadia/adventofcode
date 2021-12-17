@@ -2,38 +2,38 @@ original source: [https://adventofcode.com/2016/day/5](https://adventofcode.com/
 ## --- Day 5: How About a Nice Game of Chess? ---
 You are faced with a security door designed by Easter Bunny engineers that seem to have acquired most of their security knowledge by watching [hacking](https://en.wikipedia.org/wiki/Hackers_(film)) [movies](https://en.wikipedia.org/wiki/WarGames).
 
-The *eight-character password* for the door is generated one character at a time by finding the [MD5](https://en.wikipedia.org/wiki/MD5) hash of some Door ID (your puzzle input) and an increasing integer index (starting with `0`).
+The <em>eight-character password</em> for the door is generated one character at a time by finding the [MD5](https://en.wikipedia.org/wiki/MD5) hash of some Door ID (your puzzle input) and an increasing integer index (starting with <code>0</code>).
 
-A hash indicates the *next character* in the password if its [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) representation starts with *five zeroes*. If it does, the sixth character in the hash is the next character of the password.
+A hash indicates the <em>next character</em> in the password if its [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) representation starts with <em>five zeroes</em>. If it does, the sixth character in the hash is the next character of the password.
 
-For example, if the Door ID is `abc`:
+For example, if the Door ID is <code>abc</code>:
 
 
- - The first index which produces a hash that starts with five zeroes is `3231929`, which we find by hashing `abc3231929`; the sixth character of the hash, and thus the first character of the password, is `1`.
- - `5017308` produces the next interesting hash, which starts with `000008f82...`, so the second character of the password is `8`.
- - The third time a hash starts with five zeroes is for `abc5278568`, discovering the character `f`.
+ - The first index which produces a hash that starts with five zeroes is <code>3231929</code>, which we find by hashing <code>abc3231929</code>; the sixth character of the hash, and thus the first character of the password, is <code>1</code>.
+ - <code>5017308</code> produces the next interesting hash, which starts with <code>000008f82...</code>, so the second character of the password is <code>8</code>.
+ - The third time a hash starts with five zeroes is for <code>abc5278568</code>, discovering the character <code>f</code>.
 
-In this example, after continuing this search a total of eight times, the password is `18f47a30`.
+In this example, after continuing this search a total of eight times, the password is <code>18f47a30</code>.
 
-Given the actual Door ID, *what is the password*?
+Given the actual Door ID, <em>what is the password</em>?
 
 
 ## --- Part Two ---
-As the door slides open, you are presented with a second door that uses a slightly more inspired security mechanism. Clearly unimpressed by the last version (in what movie is the password decrypted *in order*?!), the Easter Bunny engineers have worked out [a better solution](https://www.youtube.com/watch?v=NHWjlCaIrQo&t=25).
+As the door slides open, you are presented with a second door that uses a slightly more inspired security mechanism. Clearly unimpressed by the last version (in what movie is the password decrypted <em>in order</em>?!), the Easter Bunny engineers have worked out [a better solution](https://www.youtube.com/watch?v=NHWjlCaIrQo&t=25).
 
-Instead of simply filling in the password from left to right, the hash now also indicates the *position* within the password to fill. You still look for hashes that begin with five zeroes; however, now, the *sixth* character represents the *position* (`0`-`7`), and the *seventh* character is the character to put in that position.
+Instead of simply filling in the password from left to right, the hash now also indicates the <em>position</em> within the password to fill. You still look for hashes that begin with five zeroes; however, now, the <em>sixth</em> character represents the <em>position</em> (<code>0</code>-<code>7</code>), and the <em>seventh</em> character is the character to put in that position.
 
-A hash result of `000001f` means that `f` is the *second* character in the password. Use only the *first result* for each position, and ignore invalid positions.
+A hash result of <code>000001f</code> means that <code>f</code> is the <em>second</em> character in the password. Use only the <em>first result</em> for each position, and ignore invalid positions.
 
-For example, if the Door ID is `abc`:
+For example, if the Door ID is <code>abc</code>:
 
 
- - The first interesting hash is from `abc3231929`, which produces `0000015...`; so, `5` goes in position `1`: `_5______`.
- - In the previous method, `5017308` produced an interesting hash; however, it is ignored, because it specifies an invalid position (`8`).
- - The second interesting hash is at index `5357525`, which produces `000004e...`; so, `e` goes in position `4`: `_5__e___`.
+ - The first interesting hash is from <code>abc3231929</code>, which produces <code>0000015...</code>; so, <code>5</code> goes in position <code>1</code>: <code>_5______</code>.
+ - In the previous method, <code>5017308</code> produced an interesting hash; however, it is ignored, because it specifies an invalid position (<code>8</code>).
+ - The second interesting hash is at index <code>5357525</code>, which produces <code>000004e...</code>; so, <code>e</code> goes in position <code>4</code>: <code>_5__e___</code>.
 
-You almost choke on your popcorn as the final character falls into place, producing the password `05ace8e3`.
+You almost choke on your popcorn as the final character falls into place, producing the password <code>05ace8e3</code>.
 
-Given the actual Door ID and this new method, *what is the password*? Be extra proud of your solution if it uses a cinematic "decrypting" animation.
+Given the actual Door ID and this new method, <em>what is the password</em>? Be extra proud of your solution if it uses a cinematic "decrypting" animation.
 
 

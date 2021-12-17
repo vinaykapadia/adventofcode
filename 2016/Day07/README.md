@@ -1,33 +1,33 @@
 original source: [https://adventofcode.com/2016/day/7](https://adventofcode.com/2016/day/7)
 ## --- Day 7: Internet Protocol Version 7 ---
-While snooping around the local network of EBHQ, you compile a list of [IP addresses](https://en.wikipedia.org/wiki/IP_address) (they're IPv7, of course; [IPv6](https://en.wikipedia.org/wiki/IPv6) is much too limited). You'd like to figure out which IPs support *TLS* (transport-layer snooping).
+While snooping around the local network of EBHQ, you compile a list of [IP addresses](https://en.wikipedia.org/wiki/IP_address) (they're IPv7, of course; [IPv6](https://en.wikipedia.org/wiki/IPv6) is much too limited). You'd like to figure out which IPs support <em>TLS</em> (transport-layer snooping).
 
-An IP supports TLS if it has an Autonomous Bridge Bypass Annotation, or *ABBA*.  An ABBA is any four-character sequence which consists of a pair of two different characters followed by the reverse of that pair, such as `xyyx` or `abba`.  However, the IP also must not have an ABBA within any hypernet sequences, which are contained by *square brackets*.
+An IP supports TLS if it has an Autonomous Bridge Bypass Annotation, or <em>ABBA</em>.  An ABBA is any four-character sequence which consists of a pair of two different characters followed by the reverse of that pair, such as <code>xyyx</code> or <code>abba</code>.  However, the IP also must not have an ABBA within any hypernet sequences, which are contained by <em>square brackets</em>.
 
 For example:
 
 
- - `abba[mnop]qrst` supports TLS (`abba` outside square brackets).
- - `abcd[bddb]xyyx` does *not* support TLS (`bddb` is within square brackets, even though `xyyx` is outside square brackets).
- - `aaaa[qwer]tyui` does *not* support TLS (`aaaa` is invalid; the interior characters must be different).
- - `ioxxoj[asdfgh]zxcvbn` supports TLS (`oxxo` is outside square brackets, even though it's within a larger string).
+ - <code>abba[mnop]qrst</code> supports TLS (<code>abba</code> outside square brackets).
+ - <code>abcd[bddb]xyyx</code> does <em>not</em> support TLS (<code>bddb</code> is within square brackets, even though <code>xyyx</code> is outside square brackets).
+ - <code>aaaa[qwer]tyui</code> does <em>not</em> support TLS (<code>aaaa</code> is invalid; the interior characters must be different).
+ - <code>ioxxoj[asdfgh]zxcvbn</code> supports TLS (<code>oxxo</code> is outside square brackets, even though it's within a larger string).
 
-*How many IPs* in your puzzle input support TLS?
+<em>How many IPs</em> in your puzzle input support TLS?
 
 
 ## --- Part Two ---
-You would also like to know which IPs support *SSL* (super-secret listening).
+You would also like to know which IPs support <em>SSL</em> (super-secret listening).
 
-An IP supports SSL if it has an Area-Broadcast Accessor, or *ABA*, anywhere in the supernet sequences (outside any square bracketed sections), and a corresponding Byte Allocation Block, or *BAB*, anywhere in the hypernet sequences. An ABA is any three-character sequence which consists of the same character twice with a different character between them, such as `xyx` or `aba`. A corresponding BAB is the same characters but in reversed positions: `yxy` and `bab`, respectively.
+An IP supports SSL if it has an Area-Broadcast Accessor, or <em>ABA</em>, anywhere in the supernet sequences (outside any square bracketed sections), and a corresponding Byte Allocation Block, or <em>BAB</em>, anywhere in the hypernet sequences. An ABA is any three-character sequence which consists of the same character twice with a different character between them, such as <code>xyx</code> or <code>aba</code>. A corresponding BAB is the same characters but in reversed positions: <code>yxy</code> and <code>bab</code>, respectively.
 
 For example:
 
 
- - `aba[bab]xyz` supports SSL (`aba` outside square brackets with corresponding `bab` within square brackets).
- - `xyx[xyx]xyx` does *not* support SSL (`xyx`, but no corresponding `yxy`).
- - `aaa[kek]eke` supports SSL (`eke` in supernet with corresponding `kek` in hypernet; the `aaa` sequence is not related, because the interior character must be different).
- - `zazbz[bzb]cdb` supports SSL (`zaz` has no corresponding `aza`, but `zbz` has a corresponding `bzb`, even though `zaz` and `zbz` overlap).
+ - <code>aba[bab]xyz</code> supports SSL (<code>aba</code> outside square brackets with corresponding <code>bab</code> within square brackets).
+ - <code>xyx[xyx]xyx</code> does <em>not</em> support SSL (<code>xyx</code>, but no corresponding <code>yxy</code>).
+ - <code>aaa[kek]eke</code> supports SSL (<code>eke</code> in supernet with corresponding <code>kek</code> in hypernet; the <code>aaa</code> sequence is not related, because the interior character must be different).
+ - <code>zazbz[bzb]cdb</code> supports SSL (<code>zaz</code> has no corresponding <code>aza</code>, but <code>zbz</code> has a corresponding <code>bzb</code>, even though <code>zaz</code> and <code>zbz</code> overlap).
 
-*How many IPs* in your puzzle input support SSL?
+<em>How many IPs</em> in your puzzle input support SSL?
 
 

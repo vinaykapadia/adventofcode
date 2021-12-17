@@ -2,25 +2,25 @@ original source: [https://adventofcode.com/2018/day/18](https://adventofcode.com
 ## --- Day 18: Settlers of The North Pole ---
 On the outskirts of the North Pole base construction project, many Elves are collecting lumber.
 
-The lumber collection area is 50 acres by 50 acres; each acre can be either *open ground* (`.`), *trees* (`|`), or a *lumberyard* (`#`). You take a scan of the area (your puzzle input).
+The lumber collection area is 50 acres by 50 acres; each acre can be either <em>open ground</em> (<code>.</code>), <em>trees</em> (<code>|</code>), or a <em>lumberyard</em> (<code>#</code>). You take a scan of the area (your puzzle input).
 
-Strange magic is at work here: each minute, the landscape looks entirely different. In exactly *one minute*, an open acre can fill with trees, a wooded acre can be converted to a lumberyard, or a lumberyard can be cleared to open ground (the lumber having been sent to other projects).
+Strange magic is at work here: each minute, the landscape looks entirely different. In exactly <em>one minute</em>, an open acre can fill with trees, a wooded acre can be converted to a lumberyard, or a lumberyard can be cleared to open ground (the lumber having been sent to other projects).
 
-The change to each acre is based entirely on *the contents of that acre* as well as *the number of open, wooded, or lumberyard acres adjacent to it* at the start of each minute. Here, "adjacent" means any of the eight acres surrounding that acre. (Acres on the edges of the lumber collection area might have fewer than eight adjacent acres; the missing acres aren't counted.)
+The change to each acre is based entirely on <em>the contents of that acre</em> as well as <em>the number of open, wooded, or lumberyard acres adjacent to it</em> at the start of each minute. Here, "adjacent" means any of the eight acres surrounding that acre. (Acres on the edges of the lumber collection area might have fewer than eight adjacent acres; the missing acres aren't counted.)
 
 In particular:
 
 
- - An *open* acre will become filled with *trees* if *three or more* adjacent acres contained trees. Otherwise, nothing happens.
- - An acre filled with *trees* will become a *lumberyard* if *three or more* adjacent acres were lumberyards. Otherwise, nothing happens.
- - An acre containing a *lumberyard* will remain a *lumberyard* if it was adjacent to *at least one other lumberyard and at least one acre containing trees*. Otherwise, it becomes *open*.
+ - An <em>open</em> acre will become filled with <em>trees</em> if <em>three or more</em> adjacent acres contained trees. Otherwise, nothing happens.
+ - An acre filled with <em>trees</em> will become a <em>lumberyard</em> if <em>three or more</em> adjacent acres were lumberyards. Otherwise, nothing happens.
+ - An acre containing a <em>lumberyard</em> will remain a <em>lumberyard</em> if it was adjacent to <em>at least one other lumberyard and at least one acre containing trees</em>. Otherwise, it becomes <em>open</em>.
 
-These changes happen across all acres *simultaneously*, each of them using the state of all acres at the beginning of the minute and changing to their new form by the end of that same minute. Changes that happen during the minute don't affect each other.
+These changes happen across all acres <em>simultaneously</em>, each of them using the state of all acres at the beginning of the minute and changing to their new form by the end of that same minute. Changes that happen during the minute don't affect each other.
 
 For example, suppose the lumber collection area is instead only 10 by 10 acres with this initial configuration:
 
-```
-Initial state:
+<pre>
+<code>Initial state:
 .#.#...|#.
 .....#|##|
 .|..|...#.
@@ -151,16 +151,11 @@ After 10 minutes:
 ||#####|||
 ||||#|||||
 ||||||||||
-```
+</code>
+</pre>
 
-After 10 minutes, there are `37` wooded acres and `31` lumberyards.  Multiplying the number of wooded acres by the number of lumberyards gives the total *resource value* after ten minutes: `37 * 31 = *1147*`.
+After 10 minutes, there are <code>37</code> wooded acres and <code>31</code> lumberyards.  Multiplying the number of wooded acres by the number of lumberyards gives the total <em>resource value</em> after ten minutes: <code>37 * 31 = <em>1147</em></code>.
 
-*What will the total resource value of the lumber collection area be after 10 minutes?*
-
-
-## --- Part Two ---
-This important natural resource will need to last for at least thousands of years.  Are the Elves collecting this lumber sustainably?
-
-*What will the total resource value of the lumber collection area be after 1000000000 minutes?*
+<em>What will the total resource value of the lumber collection area be after 10 minutes?</em>
 
 

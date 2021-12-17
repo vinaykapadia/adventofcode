@@ -27,11 +27,3 @@ If, however, you wait until <code>time=5</code> to push the button, then when th
 However, your situation has more than two discs; you've noted their positions in your puzzle input. What is the <em>first time you can press the button</em> to get a capsule?
 
 
-## --- Part Two ---
-After getting the first capsule (it contained a star! what great fortune!), the machine detects your success and begins to rearrange itself.
-
-When it's done, the discs are back in their original configuration as if it were <code>time=0</code> again, but a new disc with <code>11</code> positions and starting at position <code>0</code> has appeared exactly one second below the previously-bottom disc.
-
-With this new disc, and counting again starting from <code>time=0</code> with the configuration in your puzzle input, what is the <em>first time you can press the button</em> to get another capsule?
-
-

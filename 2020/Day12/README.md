@@ -42,33 +42,3 @@ At the end of these instructions, the ship's [Manhattan distance](https://en.wik
 Figure out where the navigation instructions lead. <em>What is the Manhattan distance between that location and the ship's starting position?</em>
 
 
-## --- Part Two ---
-Before you can give the destination to the captain, you realize that the actual action meanings were printed on the back of the instructions the whole time.
-
-Almost all of the actions indicate how to move a <em>waypoint</em> which is relative to the ship's position:
-
-
- - Action <em><code>N</code></em> means to move the waypoint <em>north</em> by the given value.
- - Action <em><code>S</code></em> means to move the waypoint <em>south</em> by the given value.
- - Action <em><code>E</code></em> means to move the waypoint <em>east</em> by the given value.
- - Action <em><code>W</code></em> means to move the waypoint <em>west</em> by the given value.
- - Action <em><code>L</code></em> means to rotate the waypoint around the ship <em>left</em> (<em>counter-clockwise</em>) the given number of degrees.
- - Action <em><code>R</code></em> means to rotate the waypoint around the ship <em>right</em> (<em>clockwise</em>) the given number of degrees.
- - Action <em><code>F</code></em> means to move <em>forward</em> to the waypoint a number of times equal to the given value.
-
-The waypoint starts <em>10 units east and 1 unit north</em> relative to the ship. The waypoint is relative to the ship; that is, if the ship moves, the waypoint moves with it.
-
-For example, using the same instructions as above:
-
-
- - <code>F10</code> moves the ship to the waypoint 10 times (a total of <em>100 units east and 10 units north</em>), leaving the ship at <em>east 100, north 10</em>. The waypoint stays 10 units east and 1 unit north of the ship.
- - <code>N3</code> moves the waypoint 3 units north to <em>10 units east and 4 units north of the ship</em>. The ship remains at <em>east 100, north 10</em>.
- - <code>F7</code> moves the ship to the waypoint 7 times (a total of <em>70 units east and 28 units north</em>), leaving the ship at <em>east 170, north 38</em>. The waypoint stays 10 units east and 4 units north of the ship.
- - <code>R90</code> rotates the waypoint around the ship clockwise 90 degrees, moving it to <em>4 units east and 10 units south of the ship</em>. The ship remains at <em>east 170, north 38</em>.
- - <code>F11</code> moves the ship to the waypoint 11 times (a total of <em>44 units east and 110 units south</em>), leaving the ship at <em>east 214, south 72</em>. The waypoint stays 4 units east and 10 units south of the ship.
-
-After these operations, the ship's Manhattan distance from its starting position is <code>214 + 72</code> = <em><code>286</code></em>.
-
-Figure out where the navigation instructions actually lead. <em>What is the Manhattan distance between that location and the ship's starting position?</em>
-
-

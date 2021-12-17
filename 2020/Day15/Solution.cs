@@ -1,22 +1,20 @@
+using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Text;
 
 namespace AdventOfCode.Y2020.Day15;
 
-[ProblemName("Rambunctious Recitation")]
+[ProblemName("Rambunctious Recitation")]      
 class Solution : Solver {
 
-    public object PartOne(string input) => NumberAt(input, 2020);
-    public object PartTwo(string input) => NumberAt(input, 30000000);
+    public object PartOne(string input) {
+        return 0;
+    }
 
-    public int NumberAt(string input, int count) {
-        var numbers = input.Split(",").Select(int.Parse).ToArray();
-        var (lastSeen, number) = (new int[count], numbers[0]);
-        for (var round = 0; round < count; round++) {
-            (lastSeen[number], number) = (round,
-                round < numbers.Length ? numbers[round] :
-                lastSeen[number] == 0  ? 0 :
-                /* otherwise */          round - lastSeen[number]);
-        }
-        return number;
+    public object PartTwo(string input) {
+        return 0;
     }
 }

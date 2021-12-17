@@ -2,40 +2,40 @@ original source: [https://adventofcode.com/2017/day/16](https://adventofcode.com
 ## --- Day 16: Permutation Promenade ---
 You come upon a very unusual sight; a group of programs here appear to be [dancing](https://www.youtube.com/watch?v=lyZQPjUT5B4&t=53).
 
-There are sixteen programs in total, named `a` through `p`. They start by standing in a line: `a` stands in position `0`, `b` stands in position `1`, and so on until `p`, which stands in position `15`.
+There are sixteen programs in total, named <code>a</code> through <code>p</code>. They start by standing in a line: <code>a</code> stands in position <code>0</code>, <code>b</code> stands in position <code>1</code>, and so on until <code>p</code>, which stands in position <code>15</code>.
 
-The programs' *dance* consists of a sequence of *dance moves*:
-
-
- - *Spin*, written `sX`, makes `X` programs move from the end to the front, but maintain their order otherwise. (For example, `s3` on `abcde` produces `cdeab`).
- - *Exchange*, written `xA/B`, makes the programs at positions `A` and `B` swap places.
- - *Partner*, written `pA/B`, makes the programs named `A` and `B` swap places.
-
-For example, with only five programs standing in a line (`abcde`), they could do the following dance:
+The programs' <em>dance</em> consists of a sequence of <em>dance moves</em>:
 
 
- - `s1`, a spin of size `1`: `eabcd`.
- - `x3/4`, swapping the last two programs: `eabdc`.
- - `pe/b`, swapping programs `e` and `b`: `baedc`.
+ - <em>Spin</em>, written <code>sX</code>, makes <code>X</code> programs move from the end to the front, but maintain their order otherwise. (For example, <code>s3</code> on <code>abcde</code> produces <code>cdeab</code>).
+ - <em>Exchange</em>, written <code>xA/B</code>, makes the programs at positions <code>A</code> and <code>B</code> swap places.
+ - <em>Partner</em>, written <code>pA/B</code>, makes the programs named <code>A</code> and <code>B</code> swap places.
 
-After finishing their dance, the programs end up in order `baedc`.
-You watch the dance for a while and record their dance moves (your puzzle input). *In what order are the programs standing* after their dance?
+For example, with only five programs standing in a line (<code>abcde</code>), they could do the following dance:
 
 
+ - <code>s1</code>, a spin of size <code>1</code>: <code>eabcd</code>.
+ - <code>x3/4</code>, swapping the last two programs: <code>eabdc</code>.
+ - <code>pe/b</code>, swapping programs <code>e</code> and <code>b</code>: <code>baedc</code>.
+
+After finishing their dance, the programs end up in order <code>baedc</code>.
+
+
+You watch the dance for a while and record their dance moves (your puzzle input). <em>In what order are the programs standing</em> after their dance?
 
 
 ## --- Part Two ---
-Now that you're starting to get a feel for the dance moves, you turn your attention to *the dance as a whole*.
+Now that you're starting to get a feel for the dance moves, you turn your attention to <em>the dance as a whole</em>.
 
-Keeping the positions they ended up in from their previous dance, the programs perform it again and again: including the first dance, a total of *one billion* (`1000000000`) times.
+Keeping the positions they ended up in from their previous dance, the programs perform it again and again: including the first dance, a total of <em>one billion</em> (<code>1000000000</code>) times.
 
-In the example above, their second dance would *begin* with the order `baedc`, and use the same dance moves:
+In the example above, their second dance would <em>begin</em> with the order <code>baedc</code>, and use the same dance moves:
 
 
- - `s1`, a spin of size `1`: `cbaed`.
- - `x3/4`, swapping the last two programs: `cbade`.
- - `pe/b`, swapping programs `e` and `b`: `ceadb`.
+ - <code>s1</code>, a spin of size <code>1</code>: <code>cbaed</code>.
+ - <code>x3/4</code>, swapping the last two programs: <code>cbade</code>.
+ - <code>pe/b</code>, swapping programs <code>e</code> and <code>b</code>: <code>ceadb</code>.
 
-*In what order are the programs standing* after their billion dances?
+<em>In what order are the programs standing</em> after their billion dances?
 
 

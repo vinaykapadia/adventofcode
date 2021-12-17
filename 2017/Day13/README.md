@@ -1,32 +1,34 @@
 original source: [https://adventofcode.com/2017/day/13](https://adventofcode.com/2017/day/13)
 ## --- Day 13: Packet Scanners ---
-You need to cross a vast *firewall*. The firewall consists of several layers, each with a *security scanner* that moves back and forth across the layer. To succeed, you must not be detected by a scanner.
+You need to cross a vast <em>firewall</em>. The firewall consists of several layers, each with a <em>security scanner</em> that moves back and forth across the layer. To succeed, you must not be detected by a scanner.
 
-By studying the firewall briefly, you are able to record (in your puzzle input) the *depth* of each layer and the *range* of the scanning area for the scanner within it, written as `depth: range`. Each layer has a thickness of exactly `1`. A layer at depth `0` begins immediately inside the firewall; a layer at depth `1` would start immediately after that.
+By studying the firewall briefly, you are able to record (in your puzzle input) the <em>depth</em> of each layer and the <em>range</em> of the scanning area for the scanner within it, written as <code>depth: range</code>. Each layer has a thickness of exactly <code>1</code>. A layer at depth <code>0</code> begins immediately inside the firewall; a layer at depth <code>1</code> would start immediately after that.
 
 For example, suppose you've recorded the following:
 
-```
-0: 3
+<pre>
+<code>0: 3
 1: 2
 4: 4
 6: 4
-```
+</code>
+</pre>
 
-This means that there is a layer immediately inside the firewall (with range `3`), a second layer immediately after that (with range `2`), a third layer which begins at depth `4` (with range `4`), and a fourth layer which begins at depth 6 (also with range `4`). Visually, it might look like this:
+This means that there is a layer immediately inside the firewall (with range <code>3</code>), a second layer immediately after that (with range <code>2</code>), a third layer which begins at depth <code>4</code> (with range <code>4</code>), and a fourth layer which begins at depth 6 (also with range <code>4</code>). Visually, it might look like this:
 
-```
- 0   1   2   3   4   5   6
+<pre>
+<code> 0   1   2   3   4   5   6
 [ ] [ ] ... ... [ ] ... [ ]
 [ ] [ ]         [ ]     [ ]
 [ ]             [ ]     [ ]
                 [ ]     [ ]
-```
+</code>
+</pre>
 
-Within each layer, a security scanner moves back and forth within its range. Each security scanner starts at the top and moves down until it reaches the bottom, then moves up until it reaches the top, and repeats. A security scanner takes *one picosecond* to move one step.  Drawing scanners as `S`, the first few picoseconds look like this:
+Within each layer, a security scanner moves back and forth within its range. Each security scanner starts at the top and moves down until it reaches the bottom, then moves up until it reaches the top, and repeats. A security scanner takes <em>one picosecond</em> to move one step.  Drawing scanners as <code>S</code>, the first few picoseconds look like this:
 
-```
-
+<pre>
+<code>
 Picosecond 0:
  0   1   2   3   4   5   6
 [S] [S] ... ... [S] ... [S]
@@ -54,12 +56,13 @@ Picosecond 3:
 [S] [S]         [ ]     [ ]
 [ ]             [ ]     [ ]
                 [S]     [S]
-```
+</code>
+</pre>
 
-Your plan is to hitch a ride on a packet about to move through the firewall.  The packet will travel along the top of each layer, and it moves at *one layer per picosecond*. Each picosecond, the packet moves one layer forward (its first move takes it into layer 0), and then the scanners move one step. If there is a scanner at the top of the layer *as your packet enters it*, you are *caught*. (If a scanner moves into the top of its layer while you are there, you are *not* caught: it doesn't have time to notice you before you leave.) If you were to do this in the configuration above, marking your current position with parentheses, your passage through the firewall would look like this:
+Your plan is to hitch a ride on a packet about to move through the firewall.  The packet will travel along the top of each layer, and it moves at <em>one layer per picosecond</em>. Each picosecond, the packet moves one layer forward (its first move takes it into layer 0), and then the scanners move one step. If there is a scanner at the top of the layer <em>as your packet enters it</em>, you are <em>caught</em>. (If a scanner moves into the top of its layer while you are there, you are <em>not</em> caught: it doesn't have time to notice you before you leave.) If you were to do this in the configuration above, marking your current position with parentheses, your passage through the firewall would look like this:
 
-```
-Initial state:
+<pre>
+<code>Initial state:
  0   1   2   3   4   5   6
 [S] [S] ... ... [S] ... [S]
 [ ] [ ]         [ ]     [ ]
@@ -162,24 +165,25 @@ Picosecond 6:
 [S] [S]         [S]     [S]
 [ ]             [ ]     [ ]
                 [ ]     [ ]
-```
+</code>
+</pre>
 
-In this situation, you are *caught* in layers `0` and `6`, because your packet entered the layer when its scanner was at the top when you entered it. You are *not* caught in layer `1`, since the scanner moved into the top of the layer once you were already there.
+In this situation, you are <em>caught</em> in layers <code>0</code> and <code>6</code>, because your packet entered the layer when its scanner was at the top when you entered it. You are <em>not</em> caught in layer <code>1</code>, since the scanner moved into the top of the layer once you were already there.
 
-The *severity* of getting caught on a layer is equal to its *depth* multiplied by its *range*. (Ignore layers in which you do not get caught.) The severity of the whole trip is the sum of these values.  In the example above, the trip severity is `0*3 + 6*4 = *24*`.
+The <em>severity</em> of getting caught on a layer is equal to its <em>depth</em> multiplied by its <em>range</em>. (Ignore layers in which you do not get caught.) The severity of the whole trip is the sum of these values.  In the example above, the trip severity is <code>0*3 + 6*4 = <em>24</em></code>.
 
-Given the details of the firewall you've recorded, if you leave immediately, *what is the severity of your whole trip*?
+Given the details of the firewall you've recorded, if you leave immediately, <em>what is the severity of your whole trip</em>?
 
 
 ## --- Part Two ---
 Now, you need to pass through the firewall without being caught - easier said than done.
 
-You can't control the speed of the packet, but you can *delay* it any number of picoseconds. For each picosecond you delay the packet before beginning your trip, all security scanners move one step. You're not in the firewall during this time; you don't enter layer `0` until you stop delaying the packet.
+You can't control the speed of the packet, but you can <em>delay</em> it any number of picoseconds. For each picosecond you delay the packet before beginning your trip, all security scanners move one step. You're not in the firewall during this time; you don't enter layer <code>0</code> until you stop delaying the packet.
 
-In the example above, if you delay `10` picoseconds (picoseconds `0` - `9`), you won't get caught:
+In the example above, if you delay <code>10</code> picoseconds (picoseconds <code>0</code> - <code>9</code>), you won't get caught:
 
-```
-State after delaying:
+<pre>
+<code>State after delaying:
  0   1   2   3   4   5   6
 [ ] [S] ... ... [ ] ... [ ]
 [ ] [ ]         [ ]     [ ]
@@ -282,10 +286,11 @@ Picosecond 16:
 [S] [S]         [S]     [S]
 [ ]             [ ]     [ ]
                 [ ]     [ ]
-```
+</code>
+</pre>
 
-Because all smaller delays would get you caught, the fewest number of picoseconds you would need to delay to get through safely is `10`.
+Because all smaller delays would get you caught, the fewest number of picoseconds you would need to delay to get through safely is <code>10</code>.
 
-*What is the fewest number of picoseconds* that you need to delay the packet to pass through the firewall without being caught?
+<em>What is the fewest number of picoseconds</em> that you need to delay the packet to pass through the firewall without being caught?
 
 

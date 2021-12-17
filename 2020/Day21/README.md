@@ -25,18 +25,3 @@ The first step is to determine which ingredients <em>can't possibly</em> contain
 Determine which ingredients cannot possibly contain any of the allergens in your list. <em>How many times do any of those ingredients appear?</em>
 
 
-## --- Part Two ---
-Now that you've isolated the inert ingredients, you should have enough information to figure out which ingredient contains which allergen.
-
-In the above example:
-
-
- - <code>mxmxvkd</code> contains <code>dairy</code>.
- - <code>sqjhc</code> contains <code>fish</code>.
- - <code>fvjkl</code> contains <code>soy</code>.
-
-Arrange the ingredients <em>alphabetically by their allergen</em> and separate them by commas to produce your <em>canonical dangerous ingredient list</em>. (There should <em>not be any spaces</em> in your canonical dangerous ingredient list.) In the above example, this would be <em><code>mxmxvkd,sqjhc,fvjkl</code></em>.
-
-Time to stock your raft with supplies. <em>What is your canonical dangerous ingredient list?</em>
-
-

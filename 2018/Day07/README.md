@@ -8,53 +8,54 @@ You find yourself standing on a snow-covered coastline; apparently, you landed a
 
 "'Sleigh'? What a wonderful name! You must help us assemble this 'sleigh' at once!" They start excitedly pulling more parts out of the box.
 
-The instructions specify a series of *steps* and requirements about which steps must be finished before others can begin (your puzzle input). Each step is designated by a single letter. For example, suppose you have the following instructions:
+The instructions specify a series of <em>steps</em> and requirements about which steps must be finished before others can begin (your puzzle input). Each step is designated by a single letter. For example, suppose you have the following instructions:
 
-```
-Step C must be finished before step A can begin.
+<pre>
+<code>Step C must be finished before step A can begin.
 Step C must be finished before step F can begin.
 Step A must be finished before step B can begin.
 Step A must be finished before step D can begin.
 Step B must be finished before step E can begin.
 Step D must be finished before step E can begin.
 Step F must be finished before step E can begin.
-```
+</code>
+</pre>
 
 Visually, these requirements look like this:
 
-```
-
-  -->A--->B--
+<pre>
+<code>  -->A--->B--
  /    \      \
 C      -->D----->E
  \           /
   ---->F-----
-```
+</code>
+</pre>
 
 Your first goal is to determine the order in which the steps should be completed. If more than one step is ready, choose the step which is first alphabetically. In this example, the steps would be completed as follows:
 
 
- - Only *`C`* is available, and so it is done first.
- - Next, both `A` and `F` are available. *`A`* is first alphabetically, so it is done next.
- - Then, even though `F` was available earlier, steps `B` and `D` are now also available, and *`B`* is the first alphabetically of the three.
- - After that, only `D` and `F` are available. `E` is not available because only some of its prerequisites are complete. Therefore, *`D`* is completed next.
- - *`F`* is the only choice, so it is done next.
- - Finally, *`E`* is completed.
+ - Only <em><code>C</code></em> is available, and so it is done first.
+ - Next, both <code>A</code> and <code>F</code> are available. <em><code>A</code></em> is first alphabetically, so it is done next.
+ - Then, even though <code>F</code> was available earlier, steps <code>B</code> and <code>D</code> are now also available, and <em><code>B</code></em> is the first alphabetically of the three.
+ - After that, only <code>D</code> and <code>F</code> are available. <code>E</code> is not available because only some of its prerequisites are complete. Therefore, <em><code>D</code></em> is completed next.
+ - <em><code>F</code></em> is the only choice, so it is done next.
+ - Finally, <em><code>E</code></em> is completed.
 
-So, in this example, the correct order is *`CABDFE`*.
+So, in this example, the correct order is <em><code>CABDFE</code></em>.
 
-*In what order should the steps in your instructions be completed?*
+<em>In what order should the steps in your instructions be completed?</em>
 
 
 ## --- Part Two ---
 As you're about to begin construction, four of the Elves offer to help.  "The sun will set soon; it'll go faster if we work together."  Now, you need to account for multiple people working on steps simultaneously. If multiple steps are available, workers should still begin them in alphabetical order.
 
-Each step takes 60 seconds plus an amount corresponding to its letter: A=1, B=2, C=3, and so on. So, step A takes `60+1=61` seconds, while step Z takes `60+26=86` seconds. No time is required between steps.
+Each step takes 60 seconds plus an amount corresponding to its letter: A=1, B=2, C=3, and so on. So, step A takes <code>60+1=61</code> seconds, while step Z takes <code>60+26=86</code> seconds. No time is required between steps.
 
 To simplify things for the example, however, suppose you only have help from one Elf (a total of two workers) and that each step takes 60 fewer seconds (so that step A takes 1 second and step Z takes 26 seconds). Then, using the same instructions as above, this is how each second would be spent:
 
-```
-Second   Worker 1   Worker 2   Done
+<pre>
+<code>Second   Worker 1   Worker 2   Done
    0        C          .        
    1        C          .        
    2        C          .        
@@ -71,14 +72,15 @@ Second   Worker 1   Worker 2   Done
   13        E          .       CABFD
   14        E          .       CABFD
   15        .          .       CABFDE
-```
+</code>
+</pre>
 
-Each row represents one second of time.  The Second column identifies how many seconds have passed as of the beginning of that second.  Each worker column shows the step that worker is currently doing (or `.` if they are idle).  The Done column shows completed steps.
+Each row represents one second of time.  The Second column identifies how many seconds have passed as of the beginning of that second.  Each worker column shows the step that worker is currently doing (or <code>.</code> if they are idle).  The Done column shows completed steps.
 
 Note that the order of the steps has changed; this is because steps now take time to finish and multiple workers can begin multiple steps simultaneously.
 
-In this example, it would take *15* seconds for two workers to complete these steps.
+In this example, it would take <em>15</em> seconds for two workers to complete these steps.
 
-With *5* workers and the *60+ second* step durations described above, *how long will it take to complete all of the steps?*
+With <em>5</em> workers and the <em>60+ second</em> step durations described above, <em>how long will it take to complete all of the steps?</em>
 
 

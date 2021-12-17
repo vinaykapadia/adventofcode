@@ -8,59 +8,62 @@ Unfortunately, images sent via the Digital Sending Network aren't encoded with a
 
 Images are sent as a series of digits that each represent the color of a single pixel.  The digits fill each row of the image left-to-right, then move downward to the next row, filling rows top-to-bottom until every pixel of the image is filled.
 
-Each image actually consists of a series of identically-sized *layers* that are filled in this way. So, the first digit corresponds to the top-left pixel of the first layer, the second digit corresponds to the pixel to the right of that on the same layer, and so on until the last digit, which corresponds to the bottom-right pixel of the last layer.
+Each image actually consists of a series of identically-sized <em>layers</em> that are filled in this way. So, the first digit corresponds to the top-left pixel of the first layer, the second digit corresponds to the pixel to the right of that on the same layer, and so on until the last digit, which corresponds to the bottom-right pixel of the last layer.
 
-For example, given an image `3` pixels wide and `2` pixels tall, the image data `123456789012` corresponds to the following image layers:
+For example, given an image <code>3</code> pixels wide and <code>2</code> pixels tall, the image data <code>123456789012</code> corresponds to the following image layers:
 
-```
-Layer 1: 123
+<pre>
+<code>Layer 1: 123
          456
 
 Layer 2: 789
          012
-```
+</code>
+</pre>
 
-The image you received is *`25` pixels wide and `6` pixels tall*.
+The image you received is <em><code>25</code> pixels wide and <code>6</code> pixels tall</em>.
 
-To make sure the image wasn't corrupted during transmission, the Elves would like you to find the layer that contains the *fewest `0` digits*.  On that layer, what is *the number of `1` digits multiplied by the number of `2` digits?*
+To make sure the image wasn't corrupted during transmission, the Elves would like you to find the layer that contains the <em>fewest <code>0</code> digits</em>.  On that layer, what is <em>the number of <code>1</code> digits multiplied by the number of <code>2</code> digits?</em>
 
 
 ## --- Part Two ---
-Now you're ready to decode the image. The image is rendered by stacking the layers and aligning the pixels with the same positions in each layer. The digits indicate the color of the corresponding pixel: `0` is black, `1` is white, and `2` is transparent.
+Now you're ready to decode the image. The image is rendered by stacking the layers and aligning the pixels with the same positions in each layer. The digits indicate the color of the corresponding pixel: <code>0</code> is black, <code>1</code> is white, and <code>2</code> is transparent.
 
-The layers are rendered with the first layer in front and the last layer in back. So, if a given position has a transparent pixel in the first and second layers, a black pixel in the third layer, and a white pixel in the fourth layer, the final image would have a *black* pixel at that position.
+The layers are rendered with the first layer in front and the last layer in back. So, if a given position has a transparent pixel in the first and second layers, a black pixel in the third layer, and a white pixel in the fourth layer, the final image would have a <em>black</em> pixel at that position.
 
-For example, given an image `2` pixels wide and `2` pixels tall, the image data `0222112222120000` corresponds to the following image layers:
+For example, given an image <code>2</code> pixels wide and <code>2</code> pixels tall, the image data <code>0222112222120000</code> corresponds to the following image layers:
 
-```
-Layer 1: *0*2
+<pre>
+<code>Layer 1: <em>0</em>2
          22
 
-Layer 2: 1*1*
+Layer 2: 1<em>1</em>
          22
 
 Layer 3: 22
-         *1*2
+         <em>1</em>2
 
 Layer 4: 00
-         0*0*
-```
+         0<em>0</em>
+</code>
+</pre>
 
 Then, the full image can be found by determining the top visible pixel in each position:
 
 
- - The top-left pixel is *black* because the top layer is `0`.
- - The top-right pixel is *white* because the top layer is `2` (transparent), but the second layer is `1`.
- - The bottom-left pixel is *white* because the top two layers are `2`, but the third layer is `1`.
- - The bottom-right pixel is *black* because the only visible pixel in that position is `0` (from layer 4).
+ - The top-left pixel is <em>black</em> because the top layer is <code>0</code>.
+ - The top-right pixel is <em>white</em> because the top layer is <code>2</code> (transparent), but the second layer is <code>1</code>.
+ - The bottom-left pixel is <em>white</em> because the top two layers are <code>2</code>, but the third layer is <code>1</code>.
+ - The bottom-right pixel is <em>black</em> because the only visible pixel in that position is <code>0</code> (from layer 4).
 
 So, the final image looks like this:
 
-```
-01
+<pre>
+<code>01
 10
-```
+</code>
+</pre>
 
-*What message is produced after decoding your image?*
+<em>What message is produced after decoding your image?</em>
 
 

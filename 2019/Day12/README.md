@@ -1,30 +1,31 @@
 original source: [https://adventofcode.com/2019/day/12](https://adventofcode.com/2019/day/12)
 ## --- Day 12: The N-Body Problem ---
-The space near Jupiter is not a very safe place; you need to be careful of a [big distracting red spot](https://en.wikipedia.org/wiki/Great_Red_Spot), extreme [radiation](https://en.wikipedia.org/wiki/Magnetosphere_of_Jupiter), and a [whole lot of moons](https://en.wikipedia.org/wiki/Moons_of_Jupiter#List) swirling around.  You decide to start by tracking the four largest moons: *Io*, *Europa*, *Ganymede*, and *Callisto*.
+The space near Jupiter is not a very safe place; you need to be careful of a [big distracting red spot](https://en.wikipedia.org/wiki/Great_Red_Spot), extreme [radiation](https://en.wikipedia.org/wiki/Magnetosphere_of_Jupiter), and a [whole lot of moons](https://en.wikipedia.org/wiki/Moons_of_Jupiter#List) swirling around.  You decide to start by tracking the four largest moons: <em>Io</em>, <em>Europa</em>, <em>Ganymede</em>, and <em>Callisto</em>.
 
-After a brief scan, you calculate the *position of each moon* (your puzzle input). You just need to *simulate their motion* so you can avoid them.
+After a brief scan, you calculate the <em>position of each moon</em> (your puzzle input). You just need to <em>simulate their motion</em> so you can avoid them.
 
-Each moon has a 3-dimensional position (`x`, `y`, and `z`) and a 3-dimensional velocity.  The position of each moon is given in your scan; the `x`, `y`, and `z` velocity of each moon starts at `0`.
+Each moon has a 3-dimensional position (<code>x</code>, <code>y</code>, and <code>z</code>) and a 3-dimensional velocity.  The position of each moon is given in your scan; the <code>x</code>, <code>y</code>, and <code>z</code> velocity of each moon starts at <code>0</code>.
 
-Simulate the motion of the moons in *time steps*. Within each time step, first update the velocity of every moon by applying *gravity*. Then, once all moons' velocities have been updated, update the position of every moon by applying *velocity*. Time progresses by one step once all of the positions are updated.
+Simulate the motion of the moons in <em>time steps</em>. Within each time step, first update the velocity of every moon by applying <em>gravity</em>. Then, once all moons' velocities have been updated, update the position of every moon by applying <em>velocity</em>. Time progresses by one step once all of the positions are updated.
 
-To apply *gravity*, consider every *pair* of moons. On each axis (`x`, `y`, and `z`), the velocity of each moon changes by *exactly +1 or -1* to pull the moons together.  For example, if Ganymede has an `x` position of `3`, and Callisto has a `x` position of `5`, then Ganymede's `x` velocity *changes by +1* (because `5 > 3`) and Callisto's `x` velocity *changes by -1* (because `3 < 5`). However, if the positions on a given axis are the same, the velocity on that axis *does not change* for that pair of moons.
+To apply <em>gravity</em>, consider every <em>pair</em> of moons. On each axis (<code>x</code>, <code>y</code>, and <code>z</code>), the velocity of each moon changes by <em>exactly +1 or -1</em> to pull the moons together.  For example, if Ganymede has an <code>x</code> position of <code>3</code>, and Callisto has a <code>x</code> position of <code>5</code>, then Ganymede's <code>x</code> velocity <em>changes by +1</em> (because <code>5 > 3</code>) and Callisto's <code>x</code> velocity <em>changes by -1</em> (because <code>3 < 5</code>). However, if the positions on a given axis are the same, the velocity on that axis <em>does not change</em> for that pair of moons.
 
-Once all gravity has been applied, apply *velocity*: simply add the velocity of each moon to its own position. For example, if Europa has a position of `x=1, y=2, z=3` and a velocity of `x=-2, y=0,z=3`, then its new position would be `x=-1, y=2, z=6`. This process does not modify the velocity of any moon.
+Once all gravity has been applied, apply <em>velocity</em>: simply add the velocity of each moon to its own position. For example, if Europa has a position of <code>x=1, y=2, z=3</code> and a velocity of <code>x=-2, y=0,z=3</code>, then its new position would be <code>x=-1, y=2, z=6</code>. This process does not modify the velocity of any moon.
 
 For example, suppose your scan reveals the following positions:
 
-```
-<x=-1, y=0, z=2>
+<pre>
+<code><x=-1, y=0, z=2>
 <x=2, y=-10, z=-7>
 <x=4, y=-8, z=8>
 <x=3, y=5, z=-1>
-```
+</code>
+</pre>
 
 Simulating the motion of these moons would produce the following:
 
-```
-After 0 steps:
+<pre>
+<code>After 0 steps:
 pos=<x=-1, y=  0, z= 2>, vel=<x= 0, y= 0, z= 0>
 pos=<x= 2, y=-10, z=-7>, vel=<x= 0, y= 0, z= 0>
 pos=<x= 4, y= -8, z= 8>, vel=<x= 0, y= 0, z= 0>
@@ -89,34 +90,37 @@ pos=<x= 2, y= 1, z=-3>, vel=<x=-3, y=-2, z= 1>
 pos=<x= 1, y=-8, z= 0>, vel=<x=-1, y= 1, z= 3>
 pos=<x= 3, y=-6, z= 1>, vel=<x= 3, y= 2, z=-3>
 pos=<x= 2, y= 0, z= 4>, vel=<x= 1, y=-1, z=-1>
-```
+</code>
+</pre>
 
-Then, it might help to calculate the *total energy in the system*. The total energy for a single moon is its *potential energy* multiplied by its *kinetic energy*. A moon's *potential energy* is the sum of the [absolute values](https://en.wikipedia.org/wiki/Absolute_value) of its `x`, `y`, and `z` position coordinates. A moon's *kinetic energy* is the sum of the absolute values of its velocity coordinates.  Below, each line shows the calculations for a moon's potential energy (`pot`), kinetic energy (`kin`), and total energy:
+Then, it might help to calculate the <em>total energy in the system</em>. The total energy for a single moon is its <em>potential energy</em> multiplied by its <em>kinetic energy</em>. A moon's <em>potential energy</em> is the sum of the [absolute values](https://en.wikipedia.org/wiki/Absolute_value) of its <code>x</code>, <code>y</code>, and <code>z</code> position coordinates. A moon's <em>kinetic energy</em> is the sum of the absolute values of its velocity coordinates.  Below, each line shows the calculations for a moon's potential energy (<code>pot</code>), kinetic energy (<code>kin</code>), and total energy:
 
-```
-Energy after 10 steps:
+<pre>
+<code>Energy after 10 steps:
 pot: 2 + 1 + 3 =  6;   kin: 3 + 2 + 1 = 6;   total:  6 * 6 = 36
 pot: 1 + 8 + 0 =  9;   kin: 1 + 1 + 3 = 5;   total:  9 * 5 = 45
 pot: 3 + 6 + 1 = 10;   kin: 3 + 2 + 3 = 8;   total: 10 * 8 = 80
 pot: 2 + 0 + 4 =  6;   kin: 1 + 1 + 1 = 3;   total:  6 * 3 = 18
-Sum of total energy: 36 + 45 + 80 + 18 = *179*
-```
+Sum of total energy: 36 + 45 + 80 + 18 = <em>179</em>
+</code>
+</pre>
 
-In the above example, adding together the total energy for all moons after 10 steps produces the total energy in the system, `*179*`.
+In the above example, adding together the total energy for all moons after 10 steps produces the total energy in the system, <code><em>179</em></code>.
 
 Here's a second example:
 
-```
-<x=-8, y=-10, z=0>
+<pre>
+<code><x=-8, y=-10, z=0>
 <x=5, y=5, z=10>
 <x=2, y=-7, z=3>
 <x=9, y=-8, z=-3>
-```
+</code>
+</pre>
 
 Every ten steps of simulation for 100 steps produces:
 
-```
-After 0 steps:
+<pre>
+<code>After 0 steps:
 pos=<x= -8, y=-10, z=  0>, vel=<x=  0, y=  0, z=  0>
 pos=<x=  5, y=  5, z= 10>, vel=<x=  0, y=  0, z=  0>
 pos=<x=  2, y= -7, z=  3>, vel=<x=  0, y=  0, z=  0>
@@ -187,21 +191,22 @@ pot:  8 + 12 +  9 = 29;   kin: 7 +  3 + 0 = 10;   total: 29 * 10 = 290
 pot: 13 + 16 +  3 = 32;   kin: 3 + 11 + 5 = 19;   total: 32 * 19 = 608
 pot: 29 + 11 +  1 = 41;   kin: 3 +  7 + 4 = 14;   total: 41 * 14 = 574
 pot: 16 + 13 + 23 = 52;   kin: 7 +  1 + 1 =  9;   total: 52 *  9 = 468
-Sum of total energy: 290 + 608 + 574 + 468 = *1940*
-```
+Sum of total energy: 290 + 608 + 574 + 468 = <em>1940</em>
+</code>
+</pre>
 
-*What is the total energy in the system* after simulating the moons given in your scan for `1000` steps?
+<em>What is the total energy in the system</em> after simulating the moons given in your scan for <code>1000</code> steps?
 
 
 ## --- Part Two ---
 All this drifting around in space makes you wonder about the nature of the universe.  Does history really repeat itself?  You're curious whether the moons will ever return to a previous state.
 
-Determine *the number of steps* that must occur before all of the moons' *positions and velocities* exactly match a previous point in time.
+Determine <em>the number of steps</em> that must occur before all of the moons' <em>positions and velocities</em> exactly match a previous point in time.
 
-For example, the first example above takes `2772` steps before they exactly match a previous point in time; it eventually returns to the initial state:
+For example, the first example above takes <code>2772</code> steps before they exactly match a previous point in time; it eventually returns to the initial state:
 
-```
-After 0 steps:
+<pre>
+<code>After 0 steps:
 pos=<x= -1, y=  0, z=  2>, vel=<x=  0, y=  0, z=  0>
 pos=<x=  2, y=-10, z= -7>, vel=<x=  0, y=  0, z=  0>
 pos=<x=  4, y= -8, z=  8>, vel=<x=  0, y=  0, z=  0>
@@ -224,19 +229,21 @@ pos=<x= -1, y=  0, z=  2>, vel=<x=  0, y=  0, z=  0>
 pos=<x=  2, y=-10, z= -7>, vel=<x=  0, y=  0, z=  0>
 pos=<x=  4, y= -8, z=  8>, vel=<x=  0, y=  0, z=  0>
 pos=<x=  3, y=  5, z= -1>, vel=<x=  0, y=  0, z=  0>
-```
+</code>
+</pre>
 
-Of course, the universe might last for a *very long time* before repeating.  Here's a copy of the second example from above:
+Of course, the universe might last for a <em>very long time</em> before repeating.  Here's a copy of the second example from above:
 
-```
-<x=-8, y=-10, z=0>
+<pre>
+<code><x=-8, y=-10, z=0>
 <x=5, y=5, z=10>
 <x=2, y=-7, z=3>
 <x=9, y=-8, z=-3>
-```
+</code>
+</pre>
 
-This set of initial positions takes `4686774924` steps before it repeats a previous state! Clearly, you might need to *find a more efficient way to simulate the universe*.
+This set of initial positions takes <code>4686774924</code> steps before it repeats a previous state! Clearly, you might need to <em>find a more efficient way to simulate the universe</em>.
 
-*How many steps does it take* to reach the first state that exactly matches a previous state?
+<em>How many steps does it take</em> to reach the first state that exactly matches a previous state?
 
 

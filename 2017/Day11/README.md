@@ -8,28 +8,29 @@ Unfortunately for you, it's a [hex grid](https://en.wikipedia.org/wiki/Hexagonal
 
 The hexagons ("hexes") in this grid are aligned such that adjacent hexes can be found to the north, northeast, southeast, south, southwest, and northwest:
 
-```
-  \ n  /
+<pre>
+<code>  \ n  /
 nw +--+ ne
   /    \
 -+      +-
   \    /
 sw +--+ se
   / s  \
-```
+</code>
+</pre>
 
 You have the path the child process took. Starting where he started, you need to determine the fewest number of steps required to reach him. (A "step" means to move from the hex you are in to any adjacent hex.)
 
 For example:
 
 
- - `ne,ne,ne` is `3` steps away.
- - `ne,ne,sw,sw` is `0` steps away (back where you started).
- - `ne,ne,s,s` is `2` steps away (`se,se`).
- - `se,sw,se,sw,sw` is `3` steps away (`s,s,sw`).
+ - <code>ne,ne,ne</code> is <code>3</code> steps away.
+ - <code>ne,ne,sw,sw</code> is <code>0</code> steps away (back where you started).
+ - <code>ne,ne,s,s</code> is <code>2</code> steps away (<code>se,se</code>).
+ - <code>se,sw,se,sw,sw</code> is <code>3</code> steps away (<code>s,s,sw</code>).
 
 
 ## --- Part Two ---
-*How many steps away* is the *furthest* he ever got from his starting position?
+<em>How many steps away</em> is the <em>furthest</em> he ever got from his starting position?
 
 

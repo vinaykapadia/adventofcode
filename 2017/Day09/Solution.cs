@@ -1,49 +1,20 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Text;
 
 namespace AdventOfCode.Y2017.Day09;
 
-[ProblemName("Stream Processing")]
+[ProblemName("Stream Processing")]      
 class Solution : Solver {
 
-    public object PartOne(string input) => BlockScores(input).Sum();
-    public object PartTwo(string input) => Classify(input).Where((x) => x.garbage).Count();
-
-    IEnumerable<int> BlockScores(string input) {
-        var score = 0;
-        foreach (var ch in Classify(input).Where((x) => !x.garbage).Select(x => x.ch)) {
-            if (ch == '}') {
-                score--;
-            } else if (ch == '{') {
-                score++;
-                yield return score;
-            }
-        }
+    public object PartOne(string input) {
+        return 0;
     }
 
-    IEnumerable<(char ch, bool garbage)> Classify(string input) {
-        var skip = false;
-        var garbage = false;
-        foreach (var ch in input) {
-            if (garbage) {
-                if (skip) {
-                    skip = false;
-                } else {
-                    if (ch == '>') {
-                        garbage = false;
-                    } else if (ch == '!') {
-                        skip = true;
-                    } else {
-                        yield return (ch, garbage);
-                    }
-                }
-            } else {
-                if (ch == '<') {
-                    garbage = true;
-                } else {
-                    yield return (ch, garbage);
-                }
-            }
-        }
+    public object PartTwo(string input) {
+        return 0;
     }
 }

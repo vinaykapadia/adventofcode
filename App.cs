@@ -16,11 +16,18 @@ var action =
         var day = int.Parse(m[2]);
         return () => new Updater().Update(year, day).Wait();
     }) ??
+    Command(args, Args("update", "([0-9]+)/all"), m => {
+        var year = int.Parse(m[1]);
+        return () => new Updater().Update(year).Wait();
+    }) ??
     Command(args, Args("update", "today"), m => {
         var dt = DateTime.UtcNow.AddHours(-5);
-        if (dt is { Month: 12, Day: >= 1 and <= 25 }) {
+        if (dt is { Month: 12, Day: >= 1 and <= 25 })
+        {
             return () => new Updater().Update(dt.Year, dt.Day).Wait();
-        } else {
+        }
+        else
+        {
             throw new AocCommuncationError("Event is not active. This option works in Dec 1-25 only)");
         }
     }) ??
@@ -37,7 +44,8 @@ var action =
     }) ??
     Command(args, Args("upload", "today"), m => {
         var dt = DateTime.UtcNow.AddHours(-5);
-        if (dt is { Month: 12, Day: >= 1 and <= 25 }) {
+        if (dt is { Month: 12, Day: >= 1 and <= 25 })
+        {
 
             var tsolver = tsolvers.First(tsolver =>
                 SolverExtensions.Year(tsolver) == dt.Year &&
@@ -46,7 +54,9 @@ var action =
             return () =>
                 new Updater().Upload(GetSolvers(tsolver)[0]).Wait();
 
-        } else {
+        }
+        else
+        {
             throw new AocCommuncationError("Event is not active. This option works in Dec 1-25 only)");
         }
     }) ??
@@ -75,7 +85,8 @@ var action =
     }) ??
     Command(args, Args("today"), m => {
         var dt = DateTime.UtcNow.AddHours(-5);
-        if (dt is { Month: 12, Day: >= 1 and <= 25 }) {
+        if (dt is { Month: 12, Day: >= 1 and <= 25 })
+        {
 
             var tsolversSelected = tsolvers.First(tsolver =>
                 SolverExtensions.Year(tsolver) == dt.Year &&
@@ -84,7 +95,9 @@ var action =
             return () =>
                 Runner.RunAll(GetSolvers(tsolversSelected));
 
-        } else {
+        }
+        else
+        {
             throw new AocCommuncationError("Event is not active. This option works in Dec 1-25 only)");
         }
     }) ??
@@ -98,7 +111,8 @@ var action =
                 ).ToArray();
 
             var solvers = GetSolvers(tsolversSelected);
-            foreach (var solver in solvers) {
+            foreach (var solver in solvers)
+            {
                 solver.SplashScreen().Show();
             }
         };
@@ -107,45 +121,61 @@ var action =
         Console.WriteLine(Usage.Get());
     });
 
-try {
+try
+{
     action();
-} catch (AggregateException a){
-    if (a.InnerExceptions.Count == 1 && a.InnerException is AocCommuncationError){
+}
+catch (AggregateException a)
+{
+    if (a.InnerExceptions.Count == 1 && a.InnerException is AocCommuncationError)
+    {
         Console.WriteLine(a.InnerException.Message);
-    } else {
+    }
+    else
+    {
         throw;
     }
 }
 
-Solver[] GetSolvers(params Type[] tsolver) {
+Solver[] GetSolvers(params Type[] tsolver)
+{
     return tsolver.Select(t => Activator.CreateInstance(t) as Solver).ToArray();
 }
 
-Action Command(string[] args, string[] regexes, Func<string[], Action> parse) {
-    if (args.Length != regexes.Length) {
+Action Command(string[] args, string[] regexes, Func<string[], Action> parse)
+{
+    if (args.Length != regexes.Length)
+    {
         return null;
     }
     var matches = Enumerable.Zip(args, regexes, (arg, regex) => new Regex("^" + regex + "$").Match(arg));
-    if (!matches.All(match => match.Success)) {
+    if (!matches.All(match => match.Success))
+    {
         return null;
     }
-    try {
+    try
+    {
 
-        return parse(matches.SelectMany(m => 
-                m.Groups.Count > 1 ? m.Groups.Cast<Group>().Skip(1).Select(g => g.Value) 
+        return parse(matches.SelectMany(m =>
+                m.Groups.Count > 1 ? m.Groups.Cast<Group>().Skip(1).Select(g => g.Value)
                                    : new[] { m.Value }
             ).ToArray());
-    } catch {
+    }
+    catch
+    {
         return null;
     }
 }
 
-string[] Args(params string[] regex) {
+string[] Args(params string[] regex)
+{
     return regex;
 }
 
-class Usage {
-    public static string Get() {
+class Usage
+{
+    public static string Get()
+    {
         return $@"
             > Usage: dotnet run [arguments]
             > 1) To run the solutions and admire your advent calendar:
@@ -165,7 +195,7 @@ class Usage {
 
             > then run the app with
 
-            >  update [year]/[day]   Prepares a folder for the given day, updates the input,
+            >  update [year]/[day|all]   Prepares a folder for the given day, updates the input,
             >                        the readme and creates a solution template.
             >  update today          Shortcut to the above.
 

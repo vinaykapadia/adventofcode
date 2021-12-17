@@ -1,6 +1,6 @@
 cpy a d
-cpy 9 c
-cpy 282 b
+cpy 4 c
+cpy 643 b
 inc d
 dec b
 jnz b -2

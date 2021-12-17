@@ -1,21 +1,21 @@
 original source: [https://adventofcode.com/2018/day/23](https://adventofcode.com/2018/day/23)
 ## --- Day 23: Experimental Emergency Teleportation ---
-Using your torch to search the darkness of the rocky cavern, you finally locate the man's friend: a small *reindeer*.
+Using your torch to search the darkness of the rocky cavern, you finally locate the man's friend: a small <em>reindeer</em>.
 
 You're not sure how it got so far in this cave.  It looks sick - too sick to walk - and too heavy for you to carry all the way back.  Sleighs won't be invented for another 1500 years, of course.
 
-The only option is *experimental emergency teleportation*.
+The only option is <em>experimental emergency teleportation</em>.
 
-You hit the "experimental emergency teleportation" button on the device and push *I accept the risk* on no fewer than 18 different warning messages. Immediately, the device deploys hundreds of tiny *nanobots* which fly around the cavern, apparently assembling themselves into a very specific *formation*. The device lists the `X,Y,Z` position (`pos`) for each nanobot as well as its *signal radius* (`r`) on its tiny screen (your puzzle input).
+You hit the "experimental emergency teleportation" button on the device and push <em>I accept the risk</em> on no fewer than 18 different warning messages. Immediately, the device deploys hundreds of tiny <em>nanobots</em> which fly around the cavern, apparently assembling themselves into a very specific <em>formation</em>. The device lists the <code>X,Y,Z</code> position (<code>pos</code>) for each nanobot as well as its <em>signal radius</em> (<code>r</code>) on its tiny screen (your puzzle input).
 
-Each nanobot can transmit signals to any integer coordinate which is a distance away from it *less than or equal to* its signal radius (as measured by [Manhattan distance](https://en.wikipedia.org/wiki/Taxicab_geometry)). Coordinates a distance away of less than or equal to a nanobot's signal radius are said to be *in range* of that nanobot.
+Each nanobot can transmit signals to any integer coordinate which is a distance away from it <em>less than or equal to</em> its signal radius (as measured by [Manhattan distance](https://en.wikipedia.org/wiki/Taxicab_geometry)). Coordinates a distance away of less than or equal to a nanobot's signal radius are said to be <em>in range</em> of that nanobot.
 
-Before you start the teleportation process, you should determine which nanobot is the *strongest* (that is, which has the largest signal radius) and then, for that nanobot, the *total number of nanobots that are in range* of it, *including itself*.
+Before you start the teleportation process, you should determine which nanobot is the <em>strongest</em> (that is, which has the largest signal radius) and then, for that nanobot, the <em>total number of nanobots that are in range</em> of it, <em>including itself</em>.
 
 For example, given the following nanobots:
 
-```
-pos=<0,0,0>, r=4
+<pre>
+<code>pos=<0,0,0>, r=4
 pos=<1,0,0>, r=1
 pos=<4,0,0>, r=3
 pos=<0,2,0>, r=1
@@ -24,44 +24,24 @@ pos=<0,0,3>, r=1
 pos=<1,1,1>, r=1
 pos=<1,1,2>, r=1
 pos=<1,3,1>, r=1
-```
+</code>
+</pre>
 
-The strongest nanobot is the first one (position `0,0,0`) because its signal radius, `4` is the largest. Using that nanobot's location and signal radius, the following nanobots are in or out of range:
-
-
- - The nanobot at `0,0,0` is distance `0` away, and so it is *in range*.
- - The nanobot at `1,0,0` is distance `1` away, and so it is *in range*.
- - The nanobot at `4,0,0` is distance `4` away, and so it is *in range*.
- - The nanobot at `0,2,0` is distance `2` away, and so it is *in range*.
- - The nanobot at `0,5,0` is distance `5` away, and so it is *not* in range.
- - The nanobot at `0,0,3` is distance `3` away, and so it is *in range*.
- - The nanobot at `1,1,1` is distance `3` away, and so it is *in range*.
- - The nanobot at `1,1,2` is distance `4` away, and so it is *in range*.
- - The nanobot at `1,3,1` is distance `5` away, and so it is *not* in range.
-
-In this example, in total, `*7*` nanobots are in range of the nanobot with the largest signal radius.
-
-Find the nanobot with the largest signal radius.  *How many nanobots are in range* of its signals?
+The strongest nanobot is the first one (position <code>0,0,0</code>) because its signal radius, <code>4</code> is the largest. Using that nanobot's location and signal radius, the following nanobots are in or out of range:
 
 
-## --- Part Two ---
-Now, you just need to figure out where to position yourself so that you're actually teleported when the nanobots activate.
+ - The nanobot at <code>0,0,0</code> is distance <code>0</code> away, and so it is <em>in range</em>.
+ - The nanobot at <code>1,0,0</code> is distance <code>1</code> away, and so it is <em>in range</em>.
+ - The nanobot at <code>4,0,0</code> is distance <code>4</code> away, and so it is <em>in range</em>.
+ - The nanobot at <code>0,2,0</code> is distance <code>2</code> away, and so it is <em>in range</em>.
+ - The nanobot at <code>0,5,0</code> is distance <code>5</code> away, and so it is <em>not</em> in range.
+ - The nanobot at <code>0,0,3</code> is distance <code>3</code> away, and so it is <em>in range</em>.
+ - The nanobot at <code>1,1,1</code> is distance <code>3</code> away, and so it is <em>in range</em>.
+ - The nanobot at <code>1,1,2</code> is distance <code>4</code> away, and so it is <em>in range</em>.
+ - The nanobot at <code>1,3,1</code> is distance <code>5</code> away, and so it is <em>not</em> in range.
 
-To increase the probability of success, you need to find the coordinate which puts you *in range of the largest number of nanobots*. If there are multiple, choose one *closest to your position* (`0,0,0`, measured by manhattan distance).
+In this example, in total, <code><em>7</em></code> nanobots are in range of the nanobot with the largest signal radius.
 
-For example, given the following nanobot formation:
-
-```
-pos=<10,12,12>, r=2
-pos=<12,14,12>, r=2
-pos=<16,12,12>, r=4
-pos=<14,14,14>, r=6
-pos=<50,50,50>, r=200
-pos=<10,10,10>, r=5
-```
-
-Many coordinates are in range of some of the nanobots in this formation.  However, only the coordinate `12,12,12` is in range of the most nanobots: it is in range of the first five, but is not in range of the nanobot at `10,10,10`. (All other coordinates are in range of fewer than five nanobots.) This coordinate's distance from `0,0,0` is `*36*`.
-
-Find the coordinates that are in range of the largest number of nanobots. *What is the shortest manhattan distance between any of those points and `0,0,0`?*
+Find the nanobot with the largest signal radius.  <em>How many nanobots are in range</em> of its signals?
 
 
