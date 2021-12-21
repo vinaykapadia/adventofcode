@@ -1,20 +1,27 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
-using System.Text.RegularExpressions;
-using System.Text;
 
-namespace AdventOfCode.Y2019.Day01;
+namespace AdventOfCode._2019.Day01;
 
 [ProblemName("The Tyranny of the Rocket Equation")]      
-class Solution : ISolver {
+internal class Solution : ISolver
+{
 
-    public object PartOne(string input) {
-        return 0;
+    public object PartOne(string input) => input.Lines().Sum(line => GetFuelA(int.Parse(line)));
+
+
+    public object PartTwo(string input) => input.Lines().Sum(line => GetFuelB(int.Parse(line)));
+
+    private static int GetFuelA(int mass)
+    {
+        return int.Parse((Math.Floor(mass / 3.0) - 2).ToString());
     }
 
-    public object PartTwo(string input) {
-        return 0;
+    private static int GetFuelB(int mass)
+    {
+        int fuel = int.Parse((Math.Floor(mass / 3.0) - 2).ToString());
+
+        if (fuel <= 0) return 0;
+        return fuel + GetFuelB(fuel);
     }
 }
