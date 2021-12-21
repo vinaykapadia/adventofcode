@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace adventofcode.Lib
+namespace AdventOfCode.Lib
 {
     public class AutoAddingDictionary<TKey, TValue> : Dictionary<TKey, TValue> where TValue : new()
     {

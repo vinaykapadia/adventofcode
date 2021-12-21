@@ -1,5 +1,5 @@
 using System.Dynamic;
-using adventofcode.Lib;
+using AdventOfCode.Lib;
 
 namespace AdventOfCode._2017.Day23;
 

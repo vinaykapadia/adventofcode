@@ -1,20 +1,30 @@
-using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
-using System.Text.RegularExpressions;
-using System.Text;
 
-namespace AdventOfCode.Y2018.Day01;
+namespace AdventOfCode._2018.Day01;
 
 [ProblemName("Chronal Calibration")]      
-class Solution : ISolver {
+internal class Solution : ISolver
+{
 
-    public object PartOne(string input) {
-        return 0;
-    }
+    public object PartOne(string input) => input.Lines().Sum(int.Parse);
+    public object PartTwo(string input)
+    {
+        var lines = input.Lines();
+        int part2 = 0;
+        bool found = false;
+        int i = 0;
+        List<int> seen = new List<int>();
 
-    public object PartTwo(string input) {
-        return 0;
+        while (!found)
+        {
+            part2 += int.Parse(lines[i]);
+            if (seen.Contains(part2)) found = true;
+            seen.Add(part2);
+            i++;
+            i %= lines.Length;
+        }
+
+        return part2;
     }
 }
