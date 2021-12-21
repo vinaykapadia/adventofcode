@@ -1,6 +1,6 @@
-namespace AdventOfCode._2021.Day16;
+namespace AdventOfCode._2021.Day20;
 
-[ProblemName("Packet Decoder")]      
+[ProblemName("Trench Map")]      
 internal class Solution : ISolver
 {
 

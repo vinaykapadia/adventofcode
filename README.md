@@ -1,11 +1,11 @@
 # Additional Instructions
 The rest of this file is from the repo I forked. I have added additional instructions on things I've changed in [this](vk_instructions.md) file.
 
-# Advent of Code (2015-2021)
+# Advent of Code (2015-2020)
 C# solutions to the Advent of Code problems.
 Check out https://adventofcode.com.
 
-<a href="https://adventofcode.com"><img src="2021/calendar.svg" width="80%" /></a>
+<a href="https://adventofcode.com"><img src="2020/calendar.svg" width="80%" /></a>
 
 The goal is to keep my C# knowledge fresh and to follow the latest changes of the language.
 
