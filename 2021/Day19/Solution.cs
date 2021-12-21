@@ -1,6 +1,6 @@
-namespace AdventOfCode._2021.Day16;
+namespace AdventOfCode._2021.Day19;
 
-[ProblemName("Packet Decoder")]      
+[ProblemName("Beacon Scanner")]      
 internal class Solution : ISolver
 {
 
