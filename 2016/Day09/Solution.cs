@@ -1,7 +1,7 @@
 namespace AdventOfCode._2016.Day09;
 
 [ProblemName("Explosives in Cyberspace")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
 
     public object PartOne(string input)

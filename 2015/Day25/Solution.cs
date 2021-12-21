@@ -1,7 +1,7 @@
 namespace AdventOfCode._2015.Day25;
 
 [ProblemName("Let It Snow")]      
-internal class Solution : Solver {
+internal class Solution : ISolver {
 
     // Values from input are just typed in.
 

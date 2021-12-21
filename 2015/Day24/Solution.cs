@@ -4,7 +4,7 @@ using System.Linq;
 namespace AdventOfCode._2015.Day24;
 
 [ProblemName("It Hangs in the Balance")]      
-internal class Solution : Solver {
+internal class Solution : ISolver {
     private static List<int> _presents;
     private static readonly List<List<int>> PresentSets = new();
 

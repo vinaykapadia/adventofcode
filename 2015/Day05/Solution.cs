@@ -8,7 +8,7 @@ using System.Text;
 namespace AdventOfCode._2015.Day05;
 
 [ProblemName("Doesn't He Have Intern-Elves For This?")]      
-internal class Solution : Solver {
+internal class Solution : ISolver {
 
     public object PartOne(string input) => input.Split('\n').Count(x => PartA1(x) && PartA2(x) && PartA3(x));
 

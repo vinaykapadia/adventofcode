@@ -1,7 +1,7 @@
 namespace AdventOfCode._2016.Day17;
 
 [ProblemName("Two Steps Forward")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
 
     public object PartOne(string input)

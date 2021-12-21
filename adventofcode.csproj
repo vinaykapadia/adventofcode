@@ -8,12 +8,4 @@
     <PackageReference Include="AngleSharp" Version="1.1.2" />
     <PackageReference Include="AngleSharp.Diffing" Version="1.0.0" />
   </ItemGroup>
-  <ItemGroup>
-    <None Update="2016\Day01\input.in">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="2016\Day14\input.in">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
 </Project>

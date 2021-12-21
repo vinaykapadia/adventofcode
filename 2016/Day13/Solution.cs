@@ -1,7 +1,7 @@
 namespace AdventOfCode._2016.Day13;
 
 [ProblemName("A Maze of Twisty Little Cubicles")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
 
     public object PartOne(string input)

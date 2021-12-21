@@ -8,7 +8,7 @@ using System.Text;
 namespace AdventOfCode._2015.Day13;
 
 [ProblemName("Knights of the Dinner Table")]      
-internal class Solution : Solver {
+internal class Solution : ISolver {
     private static Dictionary<string, int> Happiness = new Dictionary<string, int>();
     List<string> names = new List<string>();
     private static int maxHap = 0;

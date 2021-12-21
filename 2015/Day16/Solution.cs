@@ -5,7 +5,7 @@ using System.Linq;
 namespace AdventOfCode._2015.Day16;
 
 [ProblemName("Aunt Sue")]
-internal class Solution : Solver {
+internal class Solution : ISolver {
     private readonly List<Aunt> _aunts = new();
 
     public object PartOne(string input) {

@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 namespace AdventOfCode._2016.Day07;
 
 [ProblemName("Internet Protocol Version 7")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
     public static int PartBAnswer { get; set; }
 

@@ -1,7 +1,9 @@
+using AdventOfCode.Common;
+
 namespace AdventOfCode._2016.Day05;
 
 [ProblemName("How About a Nice Game of Chess?")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
 
     public object PartOne(string input)

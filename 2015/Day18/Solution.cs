@@ -3,7 +3,7 @@ using System;
 namespace AdventOfCode._2015.Day18;
 
 [ProblemName("Like a GIF For Your Yard")]      
-internal class Solution : Solver {
+internal class Solution : ISolver {
 private static int size = 0;
 
     public object PartOne(string input)

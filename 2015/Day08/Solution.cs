@@ -8,7 +8,7 @@ using System.Text;
 namespace AdventOfCode._2015.Day08;
 
 [ProblemName("Matchsticks")]      
-internal class Solution : Solver {
+internal class Solution : ISolver {
     public static int PartBSolution { get; set; }
 
     public object PartOne(string input) {

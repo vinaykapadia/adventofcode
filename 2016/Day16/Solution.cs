@@ -1,7 +1,7 @@
 namespace AdventOfCode._2016.Day16;
 
 [ProblemName("Dragon Checksum")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
 
     public object PartOne(string input)

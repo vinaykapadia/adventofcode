@@ -8,7 +8,7 @@ using System.Text;
 namespace AdventOfCode._2015.Day20;
 
 [ProblemName("Infinite Elves and Infinite Houses")]      
-internal class Solution : Solver {
+internal class Solution : ISolver {
 
     public object PartOne(string input)
     {

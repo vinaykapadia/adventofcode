@@ -8,7 +8,7 @@ using System.Text;
 namespace AdventOfCode._2015.Day02;
 
 [ProblemName("I Was Told There Would Be No Math")]      
-internal class Solution : Solver {
+internal class Solution : ISolver {
 
     public object PartOne(string input)
     {

@@ -10,7 +10,7 @@ using AngleSharp;
 using AngleSharp.Dom;
 using AngleSharp.Io;
 
-namespace adventofcode.Lib;
+namespace AdventOfCode.Lib;
 
 internal class Updater
 {
