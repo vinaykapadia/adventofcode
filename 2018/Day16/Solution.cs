@@ -1,20 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Text;
-
-namespace AdventOfCode.Y2018.Day16;
+namespace AdventOfCode._2018.Day16;
 
 [ProblemName("Chronal Classification")]      
-class Solution : ISolver {
+internal class Solution : ISolver
+{
 
-    public object PartOne(string input) {
+    public object PartOne(string input)
+    {
         return 0;
     }
 
-    public object PartTwo(string input) {
+    public object PartTwo(string input)
+    {
         return 0;
     }
 }
