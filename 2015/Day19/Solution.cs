@@ -8,7 +8,7 @@ using System.Text;
 namespace AdventOfCode._2015.Day19;
 
 [ProblemName("Medicine for Rudolph")]      
-internal class Solution : Solver {
+internal class Solution : ISolver {
     // For Part B, just used the solution mega thread and followed an analysis, no code.
     private static readonly Dictionary<string, List<string>> Maps = new();
     private static readonly List<string> NewMolecules = new();

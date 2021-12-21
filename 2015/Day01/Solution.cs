@@ -1,7 +1,7 @@
 namespace AdventOfCode._2015.Day01;
 
 [ProblemName("Not Quite Lisp")]      
-internal class Solution : Solver {
+internal class Solution : ISolver {
 
     public object PartOne(string input)
     {

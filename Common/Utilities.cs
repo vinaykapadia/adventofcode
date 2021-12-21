@@ -1,8 +1,12 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
+namespace AdventOfCode.Common;
+
 public static class Utilities
 {
+    public static object PartBAnswer { get; set; }
+
     public static string CalculateMd5Hash(string input)
     {
         var md5 = MD5.Create();

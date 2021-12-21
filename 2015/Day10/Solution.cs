@@ -4,7 +4,7 @@ using System.Text;
 namespace AdventOfCode._2015.Day10;
 
 [ProblemName("Elves Look, Elves Say")]      
-internal class Solution : Solver {
+internal class Solution : ISolver {
 
     public object PartOne(string input)
     {

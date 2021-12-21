@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace AdventOfCode._2015.Day07;
 
 [ProblemName("Some Assembly Required")]      
-internal class Solution : Solver { 
+internal class Solution : ISolver { 
     private static readonly Dictionary<string, string> Commands = new();
     private static readonly Dictionary<string, ushort> Wires = new();
 

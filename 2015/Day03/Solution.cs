@@ -9,7 +9,7 @@ using System.Text;
 namespace AdventOfCode._2015.Day03;
 
 [ProblemName("Perfectly Spherical Houses in a Vacuum")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
     public object PartOne(string input)
     {

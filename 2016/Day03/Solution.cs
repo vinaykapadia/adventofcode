@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 namespace AdventOfCode._2016.Day03;
 
 [ProblemName("Squares With Three Sides")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
 
     public object PartOne(string input) => input.Lines()

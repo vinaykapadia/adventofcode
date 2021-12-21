@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 namespace AdventOfCode._2015.Day14;
 
 [ProblemName("Reindeer Olympics")]      
-internal class Solution : Solver {
+internal class Solution : ISolver {
 
     public static int PartBAnswer { get; set; }
 

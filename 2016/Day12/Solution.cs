@@ -5,7 +5,7 @@ using adventofcode.Lib;
 namespace AdventOfCode._2016.Day12;
 
 [ProblemName("Leonardo's Monorail")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
     private AutoAddingDictionary<char, int> registers;
     int i;

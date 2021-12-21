@@ -8,7 +8,7 @@ using System.Text;
 namespace AdventOfCode._2015.Day06;
 
 [ProblemName("Probably a Fire Hazard")]      
-internal class Solution : Solver {
+internal class Solution : ISolver {
 
     public object PartOne(string input) {
         var lights = new bool[1000000];

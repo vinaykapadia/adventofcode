@@ -5,7 +5,7 @@ namespace AdventOfCode._2015.Day22;
 // Values from input are just typed in.
 
 [ProblemName("Wizard Simulator 20XX")]      
-internal class Solution : Solver {
+internal class Solution : ISolver {
     private struct Player
     {
         public int HitPoints;

@@ -1,7 +1,7 @@
 namespace AdventOfCode._2016.Day21;
 
 [ProblemName("Scrambled Letters and Hash")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
 
     public object PartOne(string input)

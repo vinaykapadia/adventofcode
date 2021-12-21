@@ -8,7 +8,7 @@ using System.Text;
 namespace AdventOfCode._2015.Day11;
 
 [ProblemName("Corporate Policy")]      
-internal class Solution : Solver {
+internal class Solution : ISolver {
     public static string PartAAnswer { get; set; }
 
     public object PartOne(string input) {

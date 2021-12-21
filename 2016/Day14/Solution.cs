@@ -1,13 +1,11 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
-using AngleSharp.Io;
+using AdventOfCode.Common;
 
 namespace AdventOfCode._2016.Day14;
 
 [ProblemName("One-Time Pad")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
 
     public object PartOne(string input)

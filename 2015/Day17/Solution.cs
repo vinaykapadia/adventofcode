@@ -8,7 +8,7 @@ using System.Text;
 namespace AdventOfCode._2015.Day17;
 
 [ProblemName("No Such Thing as Too Much")]      
-internal class Solution : Solver {
+internal class Solution : ISolver {
     private static List<int> _buckets;
     private static int _count;
     private static readonly List<int> BucketCounts = new();

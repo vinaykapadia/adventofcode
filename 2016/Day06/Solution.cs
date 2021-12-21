@@ -6,7 +6,7 @@ using System.Text;
 namespace AdventOfCode._2016.Day06;
 
 [ProblemName("Signals and Noise")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
     public static string PartBAnswer { get; set; }
 

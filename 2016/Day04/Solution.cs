@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 namespace AdventOfCode._2016.Day04;
 
 [ProblemName("Security Through Obscurity")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
     Dictionary<string, int> validRooms = new Dictionary<string, int>();
 

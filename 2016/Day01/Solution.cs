@@ -5,7 +5,7 @@ using System.Linq;
 namespace AdventOfCode._2016.Day01;
 
 [ProblemName("No Time for a Taxicab")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
 
     public object PartOne(string input)

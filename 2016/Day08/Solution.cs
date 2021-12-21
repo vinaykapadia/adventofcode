@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 namespace AdventOfCode._2016.Day08;
 
 [ProblemName("Two-Factor Authentication")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
     private const int R = 6;
     private const int C = 50;
