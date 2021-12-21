@@ -1,20 +1,39 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Text;
-
-namespace AdventOfCode.Y2019.Day13;
+﻿namespace AdventOfCode._2019.Day13;
 
 [ProblemName("Care Package")]      
-class Solution : ISolver {
+internal class Solution : ISolver
+{
 
-    public object PartOne(string input) {
-        return 0;
+    public object PartOne(string input)
+    {
+        int[,] screen = new int[100, 100];
+
+        Computer.Process(input);
+
+        while (Computer.HasOutput)
+        {
+            int x = (int)Computer.GetOutput();
+            int y = (int)Computer.GetOutput();
+            int tile = (int)Computer.GetOutput();
+            screen[x, y] = tile;
+            /*Console.CursorLeft = x;
+            Console.CursorTop = y;
+            Console.Write(tile switch
+            {
+                0 => ' ',
+                1 => '█',
+                2 => '≡',
+                3 => '_',
+                4 => '*',
+                _ => ' '
+            });*/
+        }
+
+        return screen.Cast<int>().Count(i => i == 2);
     }
 
-    public object PartTwo(string input) {
+    public object PartTwo(string input)
+    {
         return 0;
     }
 }

@@ -1,7 +1,3 @@
-using System.Linq;
-using AdventOfCode.Common;
-using AdventOfCode.Lib;
-
 namespace AdventOfCode._2018.Day02;
 
 [ProblemName("Inventory Management System")]      
@@ -53,12 +49,12 @@ internal class Solution : ISolver
             if (lines[i][k] == lines[j][k]) final += lines[i][k];
         }
 
-        Utilities.PartBAnswer = final;
+        PartBAnswer = final;
         return countThree * countTwo;
     }
 
     public object PartTwo(string input)
     {
-        return Utilities.PartBAnswer;
+        return PartBAnswer;
     }
 }
