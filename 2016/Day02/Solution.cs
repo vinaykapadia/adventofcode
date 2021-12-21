@@ -3,7 +3,7 @@ using System.Text;
 namespace AdventOfCode._2016.Day02;
 
 [ProblemName("Bathroom Security")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
 
     public object PartOne(string input)

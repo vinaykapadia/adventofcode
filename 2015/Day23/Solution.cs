@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace AdventOfCode._2015.Day23;
 
 [ProblemName("Opening the Turing Lock")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
     public object PartOne(string input) => Run(input.Lines(), 0);
 

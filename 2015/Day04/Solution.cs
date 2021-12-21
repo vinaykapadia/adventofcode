@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Text;
-using System.Threading.Tasks;
+using AdventOfCode.Common;
 
 namespace AdventOfCode._2015.Day04;
 
 [ProblemName("The Ideal Stocking Stuffer")]      
-internal class Solution : Solver {
+internal class Solution : ISolver {
 
     public object PartOne(string input)
     {

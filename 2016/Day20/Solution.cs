@@ -1,7 +1,7 @@
 namespace AdventOfCode._2016.Day20;
 
 [ProblemName("Firewall Rules")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
 
     public object PartOne(string input)

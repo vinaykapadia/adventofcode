@@ -8,7 +8,7 @@ using System.Text;
 namespace AdventOfCode._2015.Day09;
 
 [ProblemName("All in a Single Night")]      
-internal class Solution : Solver {
+internal class Solution : ISolver {
     // Eliminated all the ones that were above 100 for A or below 100 for B, then just drew out the cities and thought about it a bit.
 
     public object PartOne(string input) {

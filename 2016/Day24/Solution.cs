@@ -1,7 +1,7 @@
 namespace AdventOfCode._2016.Day24;
 
 [ProblemName("Air Duct Spelunking")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
 
     public object PartOne(string input)

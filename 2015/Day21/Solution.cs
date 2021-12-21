@@ -7,7 +7,7 @@ namespace AdventOfCode._2015.Day21;
 // Values from input were just typed directly in.
 
 [ProblemName("RPG Simulator 20XX")]      
-internal class Solution : Solver {
+internal class Solution : ISolver {
     private class Item
     {
         public int Cost { get; init; }

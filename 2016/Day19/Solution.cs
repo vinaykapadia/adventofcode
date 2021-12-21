@@ -1,7 +1,7 @@
 namespace AdventOfCode._2016.Day19;
 
 [ProblemName("An Elephant Named Joseph")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
 
     public object PartOne(string input)

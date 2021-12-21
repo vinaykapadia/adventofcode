@@ -5,7 +5,7 @@ using adventofcode.Lib;
 namespace AdventOfCode._2016.Day10;
 
 [ProblemName("Balance Bots")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
     private static readonly AutoAddingDictionary<int, Bot> Bots = new AutoAddingDictionary<int, Bot>();
     private static readonly AutoAddingDictionary<int, int> Outputs = new AutoAddingDictionary<int, int>();

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace AdventOfCode._2015.Day15;
 
 [ProblemName("Science for Hungry People")]      
-internal class Solution : Solver {
+internal class Solution : ISolver {
     // I just typed the input data into here, easier than parsing.
     private readonly Dictionary<string, Dictionary<string, int>> _ingredients = new()
     {

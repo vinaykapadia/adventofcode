@@ -1,7 +1,7 @@
 namespace AdventOfCode._2016.Day22;
 
 [ProblemName("Grid Computing")]      
-internal class Solution : Solver
+internal class Solution : ISolver
 {
 
     public object PartOne(string input)

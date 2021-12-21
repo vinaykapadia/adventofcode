@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 namespace AdventOfCode._2015.Day12;
 
 [ProblemName("JSAbacusFramework.io")]      
-internal class Solution : Solver {
+internal class Solution : ISolver {
 
     public object PartOne(string input) {
         dynamic data = JsonConvert.DeserializeObject(input);
