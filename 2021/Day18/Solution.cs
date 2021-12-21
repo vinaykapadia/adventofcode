@@ -1,6 +1,6 @@
-namespace AdventOfCode._2021.Day16;
+namespace AdventOfCode._2021.Day18;
 
-[ProblemName("Packet Decoder")]      
+[ProblemName("Snailfish")]      
 internal class Solution : ISolver
 {
 

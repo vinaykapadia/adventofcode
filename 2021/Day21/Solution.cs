@@ -1,6 +1,6 @@
-namespace AdventOfCode._2021.Day16;
+namespace AdventOfCode._2021.Day21;
 
-[ProblemName("Packet Decoder")]      
+[ProblemName("Dirac Dice")]      
 internal class Solution : ISolver
 {
 

@@ -1,20 +1,41 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Text;
-
-namespace AdventOfCode.Y2021.Day06;
+namespace AdventOfCode._2021.Day06;
 
 [ProblemName("Lanternfish")]      
-class Solution : ISolver {
+internal class Solution : ISolver
+{
 
-    public object PartOne(string input) {
-        return 0;
+    public object PartOne(string input)
+    {
+        var fish = input.Split(',').Select(int.Parse).ToList();
+
+        for (int i = 1; i <= 80; i++)
+        {
+            int newFish = 0;
+            for (int j = 0; j < fish.Count; j++)
+            {
+                if (fish[j] == 0)
+                {
+                    newFish++;
+                    fish[j] = 6;
+                }
+
+                else
+                {
+                    fish[j]--;
+                }
+            }
+
+            for (int j = 0; j < newFish; j++)
+            {
+                fish.Add(8);
+            }
+        }
+
+        return fish.Count;
     }
 
-    public object PartTwo(string input) {
+    public object PartTwo(string input)
+    {
         return 0;
     }
 }
