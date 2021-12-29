@@ -25,6 +25,8 @@ public static class StringExtensions {
     }
 
     public static string[] Lines(this string st) => st.Split('\n');
+
+    public static IList<int> Nums(this string st) => st.Split(',').Select(int.Parse).ToList();
 }
 
 public record ColoredString(ConsoleColor c, string st);
