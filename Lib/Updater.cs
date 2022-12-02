@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,15 +5,15 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
-using System.Runtime.Serialization.Formatters;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using AdventOfCode.Generator;
+using AdventOfCode.Lib.Generator;
 using AdventOfCode.Model;
 using AngleSharp;
 using AngleSharp.Io;
 
-namespace AdventOfCode;
+namespace AdventOfCode.Lib;
 
 class Updater
 {
@@ -42,7 +41,7 @@ class Updater
         }
 
         var years = Assembly.GetEntryAssembly().GetTypes()
-            .Where(t => t.GetTypeInfo().IsClass && typeof(Solver).IsAssignableFrom(t))
+            .Where(t => t.GetTypeInfo().IsClass && typeof(ISolver).IsAssignableFrom(t))
             .Select(tsolver => SolverExtensions.Year(tsolver));
 
         UpdateProjectReadme(years.Min(), years.Max());
@@ -87,7 +86,7 @@ class Updater
         return context;
     }
 
-    public async Task Upload(Solver solver)
+    public async Task Upload(ISolver solver)
     {
 
         var color = Console.ForegroundColor;
@@ -95,7 +94,7 @@ class Updater
         var solverResult = Runner.RunSolver(solver);
         Console.WriteLine();
 
-        if (solverResult.errors.Any())
+        if (solverResult.Errors.Any())
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Uhh-ohh the solution doesn't pass the tests...");
@@ -111,7 +110,7 @@ class Updater
             Console.WriteLine("Both parts of this puzzle are complete!");
             Console.WriteLine();
         }
-        else if (solverResult.answers.Length <= problem.Answers.Length)
+        else if (solverResult.Answers.Length <= problem.Answers.Length)
         {
             Console.WriteLine($"You need to work on part {problem.Answers.Length + 1}");
             Console.WriteLine();
@@ -119,7 +118,7 @@ class Updater
         else
         {
             var level = problem.Answers.Length + 1;
-            var answer = solverResult.answers[problem.Answers.Length];
+            var answer = solverResult.Answers[problem.Answers.Length];
             Console.WriteLine($"Uploading answer ({answer}) for part {level}...");
 
             // https://adventofcode.com/{year}/day/{day}/answer

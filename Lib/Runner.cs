@@ -1,27 +1,24 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Diagnostics;
+using System.IO;
+using System.Reflection;
 
-namespace AdventOfCode;
+namespace AdventOfCode.Lib;
 
-class ProblemName : Attribute {
+internal class ProblemName : Attribute {
     public readonly string Name;
     public ProblemName(string name) {
-        this.Name = name;
+        Name = name;
     }
 }
 
-interface Solver {
+internal interface ISolver {
     object PartOne(string input);
     object PartTwo(string input) => null;
 }
 
-static class SolverExtensions {
+internal static class SolverExtensions {
 
-    public static IEnumerable<object> Solve(this Solver solver, string input) {
+    public static IEnumerable<object> Solve(this ISolver solver, string input) {
         yield return solver.PartOne(input);
         var res = solver.PartTwo(input);
         if (res != null) {
@@ -29,31 +26,31 @@ static class SolverExtensions {
         }
     }
 
-    public static string GetName(this Solver solver) {
+    public static string GetName(this ISolver solver) {
         return (
             solver
                 .GetType()
-                .GetCustomAttribute(typeof(ProblemName)) as ProblemName
+                .GetCustomAttribute(typeof(ProblemName)) as ProblemName ?? new ProblemName("")
         ).Name;
     }
 
-    public static string DayName(this Solver solver) {
+    public static string DayName(this ISolver solver) {
         return $"Day {solver.Day()}";
     }
 
-    public static int Year(this Solver solver) {
+    public static int Year(this ISolver solver) {
         return Year(solver.GetType());
     }
 
     public static int Year(Type t) {
-        return int.Parse(t.FullName.Split('.')[1].Substring(1));
+        return int.Parse((t.FullName?.Split('.')[1])?[1..] ?? "0");
     }
-    public static int Day(this Solver solver) {
+    public static int Day(this ISolver solver) {
         return Day(solver.GetType());
     }
 
     public static int Day(Type t) {
-        return int.Parse(t.FullName.Split('.')[2].Substring(3));
+        return int.Parse((t.FullName?.Split('.')[2])?[3..] ?? "0");
     }
 
     public static string WorkingDir(int year) {
@@ -64,55 +61,54 @@ static class SolverExtensions {
         return Path.Combine(WorkingDir(year), "Day" + day.ToString("00"));
     }
 
-    public static string WorkingDir(this Solver solver) {
+    public static string WorkingDir(this ISolver solver) {
         return WorkingDir(solver.Year(), solver.Day());
     }
 
-    public static SplashScreen SplashScreen(this Solver solver) {
-        var tsplashScreen = Assembly.GetEntryAssembly().GetTypes()
+    public static SplashScreen SplashScreen(this ISolver solver) {
+        var tSplashScreen = Assembly.GetEntryAssembly()?.GetTypes()
              .Where(t => t.GetTypeInfo().IsClass && typeof(SplashScreen).IsAssignableFrom(t))
              .Single(t => Year(t) == solver.Year());
-        return (SplashScreen)Activator.CreateInstance(tsplashScreen);
+        return (SplashScreen)Activator.CreateInstance(tSplashScreen ?? Assembly.GetCallingAssembly().GetTypes()[0]);
     }
 }
 
-record SolverResult(string[] answers, string[] errors);
+internal record SolverResult(string[] Answers, string[] Errors);
 
-class Runner {
+internal class Runner {
 
     private static string GetNormalizedInput(string file) {
         var input = File.ReadAllText(file);
         if (input.EndsWith("\n")) {
-            input = input.Substring(0, input.Length - 1);
+            input = input[..^1];
         }
         return input;
     }
 
-    public static SolverResult RunSolver(Solver solver) {
+    public static SolverResult RunSolver(ISolver solver) {
 
         var workingDir = solver.WorkingDir();
-        var indent = "    ";
+        const string indent = "    ";
         Write(ConsoleColor.White, $"{indent}{solver.DayName()}: {solver.GetName()}");
         WriteLine();
-        var dir = workingDir;
         var file = Path.Combine(workingDir, "input.in");
         var refoutFile = file.Replace(".in", ".refout");
         var refout = File.Exists(refoutFile) ? File.ReadAllLines(refoutFile) : null;
         var input = GetNormalizedInput(file);
-        var iline = 0;
+        var iLine = 0;
         var answers = new List<string>();
         var errors = new List<string>();
         var stopwatch = Stopwatch.StartNew();
         foreach (var line in solver.Solve(input)) {
             var ticks = stopwatch.ElapsedTicks;
-            if (line is OcrString) {
-                Console.WriteLine("\n" + (line as OcrString).st.Indent(10, firstLine: true));
+            if (line is OcrString ocrString) {
+                Console.WriteLine("\n" + ocrString.st.Indent(10, true));
             }
             answers.Add(line.ToString());
             var (statusColor, status, err) =
-                refout == null || refout.Length <= iline ? (ConsoleColor.Cyan, "?", null) :
-                refout[iline] == line.ToString() ? (ConsoleColor.DarkGreen, "✓", null) :
-                (ConsoleColor.Red, "X", $"{solver.DayName()}: In line {iline + 1} expected '{refout[iline]}' but found '{line}'");
+                refout == null || refout.Length <= iLine ? (ConsoleColor.Cyan, "?", null) :
+                refout[iLine] == line.ToString() ? (ConsoleColor.DarkGreen, "✓", null) :
+                (ConsoleColor.Red, "X", $"{solver.DayName()}: In line {iLine + 1} expected '{refout[iLine]}' but found '{line}'");
 
             if (err != null) {
                 errors.Add(err);
@@ -126,16 +122,16 @@ class Runner {
                 diff > 1000 ? ConsoleColor.Red :
                 diff > 500 ? ConsoleColor.Yellow :
                 ConsoleColor.DarkGreen,
-                $"({diff.ToString("F3")} ms)"
+                $"({diff:F3} ms)"
             );
-            iline++;
+            iLine++;
             stopwatch.Restart();
         }
 
         return new SolverResult(answers.ToArray(), errors.ToArray());
     }
 
-    public static void RunAll(params Solver[] solvers) {
+    public static void RunAll(params ISolver[] solvers) {
         var errors = new List<string>();
 
         var lastYear = -1;
@@ -147,7 +143,7 @@ class Runner {
 
             var result = RunSolver(solver);
             WriteLine();
-            errors.AddRange(result.errors);
+            errors.AddRange(result.Errors);
         }
 
         WriteLine();

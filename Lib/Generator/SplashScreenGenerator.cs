@@ -11,7 +11,7 @@ class SplashScreenGenerator {
         return $@"
             |using System;
             |
-            |namespace AdventOfCode.Y{calendar.Year};
+            |namespace AdventOfCode._{calendar.Year};
             |
             |class SplashScreenImpl : SplashScreen {{
             |

@@ -4,9 +4,10 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 
 using AdventOfCode;
+using AdventOfCode.Lib;
 
 var tsolvers = Assembly.GetEntryAssembly()!.GetTypes()
-    .Where(t => t.GetTypeInfo().IsClass && typeof(Solver).IsAssignableFrom(t))
+    .Where(t => t.GetTypeInfo().IsClass && typeof(ISolver).IsAssignableFrom(t))
     .OrderBy(t => t.FullName)
     .ToArray();
 
@@ -137,9 +138,9 @@ catch (AggregateException a)
     }
 }
 
-Solver[] GetSolvers(params Type[] tsolver)
+ISolver[] GetSolvers(params Type[] tsolver)
 {
-    return tsolver.Select(t => Activator.CreateInstance(t) as Solver).ToArray();
+    return tsolver.Select(t => Activator.CreateInstance(t) as ISolver).ToArray();
 }
 
 Action Command(string[] args, string[] regexes, Func<string[], Action> parse)
