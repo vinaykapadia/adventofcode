@@ -1,3 +1,5 @@
 bin
 obj
 session.txt
+launchsettings.json
+.vs
