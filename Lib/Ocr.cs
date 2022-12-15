@@ -12,7 +12,8 @@ static class OcrExtension {
 
 record OcrString(string st) {
     public override string ToString() {
-        var lines = st.Split("\n")
+        var lineSplit = Environment.NewLine;
+        var lines = st.Split(lineSplit)
             .SkipWhile(x => string.IsNullOrWhiteSpace(x))
             .TakeWhile(x => !string.IsNullOrWhiteSpace(x))
             .ToArray();
