@@ -2,3 +2,8 @@ bin
 obj
 launchsettings.json
 .vs
+*.md
+calendar.svg
+input.in
+input.refout
+SplashScreen.cs
