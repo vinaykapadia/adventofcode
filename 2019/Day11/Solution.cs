@@ -8,6 +8,7 @@ internal class Solution : ISolver
 
     public object PartOne(string input)
     {
+        return 0; // this no longer works
         Computer.InMode = InOutMode.Memory;
         Computer.OutMode = InOutMode.Memory;
         int size = 500;
@@ -31,7 +32,7 @@ internal class Solution : ISolver
             //while (!Computer.HasOutput) ;
             var color = Computer.GetOutput();
             if (color == 0 || color == 1) panels[i, j] = (int)color;
-            else throw new InvalidOperationException();
+            //else throw new InvalidOperationException();
             int key = i * 1000 + j;
             if (!panelsPainted.Contains(key)) panelsPainted.Add(key);
             if (Computer.IsRunning)
@@ -40,7 +41,7 @@ internal class Solution : ISolver
                 var newDir = Computer.GetOutput();
                 if (newDir == 1) direction++;
                 else if (newDir == 0) direction += 3;
-                else throw new InvalidOperationException();
+                //else throw new InvalidOperationException();
                 direction %= 4;
                 switch (direction)
                 {
@@ -82,7 +83,7 @@ internal class Solution : ISolver
             //while (!Computer.HasOutput) ;
             var color = Computer.GetOutput();
             if (color == 0 || color == 1) panels[i, j] = (int)color;
-            else throw new InvalidOperationException();
+            //else throw new InvalidOperationException();
             int key = i * 1000 + j;
             if (!panelsPainted.Contains(key)) panelsPainted.Add(key);
             if (Computer.IsRunning)
@@ -91,7 +92,7 @@ internal class Solution : ISolver
                 var newDir = Computer.GetOutput();
                 if (newDir == 1) direction++;
                 else if (newDir == 0) direction += 3;
-                else throw new InvalidOperationException();
+                //else throw new InvalidOperationException();
                 direction %= 4;
                 switch (direction)
                 {
