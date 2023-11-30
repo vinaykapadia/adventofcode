@@ -1,13 +1,12 @@
-namespace AdventOfCode._2022.Day12;
+namespace AdventOfCode._2022.Day19;
 
-[ProblemName("Hill Climbing Algorithm")]      
+[ProblemName("Not Enough Minerals")]      
 internal class Solution : ISolver
 {
 
     public object PartOne(string input)
     {
-        (int x, int y) start = (0, 0);
-        return start;
+        return 0;
     }
 
     public object PartTwo(string input)
