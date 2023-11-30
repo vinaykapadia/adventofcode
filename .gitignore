@@ -2,8 +2,7 @@ bin
 obj
 launchsettings.json
 .vs
-*.md
-calendar.svg
+????/Day??/README.md
+Solution.cs
 input.in
 input.refout
-SplashScreen.cs

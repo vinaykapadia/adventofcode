@@ -61,6 +61,16 @@ class Updater
         }
     }
 
+    public async Task Update()
+    {
+        var currentDate = DateTime.Now;
+        var currentYear = currentDate.Month < 12 ? currentDate.Year - 1: currentDate.Year;
+        for (var i = 2015; i <= currentYear; i++)
+        {
+            await Update(i);
+        }
+    }
+
     private Uri GetBaseAddress()
     {
         return new Uri("https://adventofcode.com");
@@ -68,11 +78,9 @@ class Updater
 
     private string GetSession()
     {
-        return File.ReadAllText("session.txt");
-        //if (!Environment.GetEnvironmentVariables().Contains("SESSION")) {
-        //    throw new AocCommuncationError("Specify SESSION environment variable", null);
-        //}
-        //return Environment.GetEnvironmentVariable("SESSION");
+        return !Environment.GetEnvironmentVariables().Contains("SESSION")
+            ? File.ReadAllText("session.txt")
+            : Environment.GetEnvironmentVariable("SESSION");
     }
     private IBrowsingContext GetContext()
     {

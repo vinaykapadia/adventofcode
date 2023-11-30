@@ -6,7 +6,9 @@ namespace AdventOfCode.Generator;
 class ProjectReadmeGenerator {
     public string Generate(int firstYear, int lastYear) {
        
-        return $@"
+        return $@"# Additional Instructions
+           > The rest of this file is from the repo I forked. I have added additional instructions on things I've changed in [this](vk_instructions.md) file.
+           > 
            > # Advent of Code ({firstYear}-{lastYear})
            > C# solutions to the Advent of Code problems.
            > Check out https://adventofcode.com.

@@ -21,6 +21,9 @@ var action =
         var year = int.Parse(m[1]);
         return () => new Updater().Update(year).Wait();
     }) ??
+    Command(args, Args("update", "all/all"), m => {
+        return () => new Updater().Update().Wait();
+    }) ??
     Command(args, Args("update", "today"), m => {
         var dt = DateTime.UtcNow.AddHours(-5);
         if (dt is { Month: 12, Day: >= 1 and <= 25 })
