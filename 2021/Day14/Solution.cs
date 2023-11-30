@@ -46,6 +46,7 @@ internal class Solution : ISolver
 
     public object PartTwo(string input)
     {
+        return 0; // this isn't working
         Dictionary<string, string> map = new();
         var lines = input.Lines();
         var poly = lines[0];
