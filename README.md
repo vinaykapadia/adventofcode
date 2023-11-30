@@ -1,3 +1,5 @@
+# Additional Instructions
+The rest of this file is from the repo I forked. I have added additional instructions on things I've changed in [this](vk_instructions.md) file.
 
 # Advent of Code (2015-2015)
 C# solutions to the Advent of Code problems.
