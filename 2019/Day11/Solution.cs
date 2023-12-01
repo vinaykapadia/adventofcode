@@ -8,7 +8,8 @@ internal class Solution : ISolver
 
     public object PartOne(string input)
     {
-        return 0; // this no longer works
+        return 0;
+        /* this no longer works
         Computer.InMode = InOutMode.Memory;
         Computer.OutMode = InOutMode.Memory;
         int size = 500;
@@ -53,7 +54,7 @@ internal class Solution : ISolver
             }
         }
 
-        return panelsPainted.Count;
+        return panelsPainted.Count;*/
     }
 
     public object PartTwo(string input)
