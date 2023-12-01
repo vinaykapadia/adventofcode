@@ -1,5 +1,3 @@
-using AngleSharp.Html.Dom;
-
 namespace AdventOfCode._2022.Day20;
 
 [ProblemName("Grove Positioning System")]      
@@ -53,6 +51,7 @@ internal class Solution : ISolver
     public object PartTwo(string input)
     {
         return 0;
+        /* This isn't working.
         long decryptionKey = 811589153;
         list = new();
         var lines = input.Lines();
@@ -90,7 +89,7 @@ internal class Solution : ISolver
 
         var zeroIndex = list.IndexOf(list.Find(x => x.Value == 0));
 
-        return list[zeroIndex + 1000 % list.Count].Value + list[zeroIndex + 2000 % list.Count].Value + list[zeroIndex + 3000 % list.Count].Value;
+        return list[zeroIndex + 1000 % list.Count].Value + list[zeroIndex + 2000 % list.Count].Value + list[zeroIndex + 3000 % list.Count].Value;*/
     }
 
     private void MoveForward(int index)
