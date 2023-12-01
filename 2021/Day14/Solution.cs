@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using System.Text;
 
 namespace AdventOfCode._2021.Day14;
@@ -46,7 +45,8 @@ internal class Solution : ISolver
 
     public object PartTwo(string input)
     {
-        return 0; // this isn't working
+        return 0;
+        /* this isn't working
         Dictionary<string, string> map = new();
         var lines = input.Lines();
         var poly = lines[0];
@@ -65,7 +65,7 @@ internal class Solution : ISolver
             secondMap.Add(mapping.Key, newString);
         }
 
-        return 0;
+        return 0;*/
     }
 
     private static string RunMap(string poly, Dictionary<string, string> map)
