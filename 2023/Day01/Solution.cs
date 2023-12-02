@@ -5,9 +5,7 @@ internal class Solution : ISolver
 {
     private const string Digits = "0123456789";
 
-    public object PartOne(string input) =>
-        input.Lines().Sum(line => int.Parse(line.FirstOrDefault(x => Digits.Contains(x)).ToString()) * 10
-                                  + int.Parse(line.LastOrDefault(x => Digits.Contains(x)).ToString()));
+    public object PartOne(string input) => input.Lines().Sum(GetValue);
 
     public object PartTwo(string input)
     {
@@ -26,7 +24,10 @@ internal class Solution : ISolver
         
         return input.Lines()
             .Select(line => tokens.Aggregate(line, (current, token) => current.Replace(token.Key, token.Value)))
-            .Sum(fixedLine => int.Parse(fixedLine.FirstOrDefault(x => Digits.Contains(x)).ToString()) * 10
-                              + int.Parse(fixedLine.LastOrDefault(x => Digits.Contains(x)).ToString()));
+            .Sum(GetValue);
     }
+
+    private static int GetValue(string line) =>
+        int.Parse(line.FirstOrDefault(x => Digits.Contains(x)).ToString()) * 10
+        + int.Parse(line.LastOrDefault(x => Digits.Contains(x)).ToString());
 }
