@@ -9,9 +9,8 @@ public static class Utilities
 
     public static string CalculateMd5Hash(string input)
     {
-        var md5 = MD5.Create();
         var inputBytes = Encoding.ASCII.GetBytes(input);
-        var hash = md5.ComputeHash(inputBytes);
+        var hash = MD5.HashData(inputBytes);
         var sb = new StringBuilder();
         foreach (var t in hash)
         {
@@ -19,5 +18,25 @@ public static class Utilities
         }
 
         return sb.ToString();
+    }
+
+    public static void Progress(long current, long total)
+    {
+        Progress((int)(current * 100 / total));
+    }
+
+    public static void Progress(int percent)
+    {
+        Console.CursorLeft = 0;
+        Console.Write("|");
+        for (var i = 0; i < percent; i++)
+        {
+            Console.Write("\u2588");
+        }
+        for (var i = percent; i < 100; i++)
+        {
+            Console.Write("_");
+        }
+        Console.Write("|");
     }
 }
