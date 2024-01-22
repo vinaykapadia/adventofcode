@@ -9,8 +9,8 @@ class SplashScreenImpl : SplashScreen {
 
         var color = Console.ForegroundColor;
         Write(0xcc00, false, "           ▄█▄ ▄▄█ ▄ ▄ ▄▄▄ ▄▄ ▄█▄  ▄▄▄ ▄█  ▄▄ ▄▄▄ ▄▄█ ▄▄▄\n           █▄█ █ █ █ █ █▄█ █ █ █   █ █ █▄ ");
-            Write(0xcc00, false, " █  █ █ █ █ █▄█\n           █ █ █▄█ ▀▄▀ █▄▄ █ █ █▄  █▄█ █   █▄ █▄█ █▄█ █▄▄  sub y{2016}\n            \n");
-            Write(0xcc00, false, "           ");
+            Write(0xcc00, false, " █  █ █ █ █ █▄█\n           █ █ █▄█ ▀▄▀ █▄▄ █ █ █▄  █▄█ █   █▄ █▄█ █▄█ █▄▄  int y = 2016;\n           ");
+            Write(0xcc00, false, " \n           ");
             Write(0x666666, false, "                    *                                   \n                               |           ");
             Write(0x666666, false, "                        \n                             +-|---+                               \n       ");
             Write(0x666666, false, "                     /  |  /|                               \n                           +-----+ |   ");
@@ -34,9 +34,16 @@ class SplashScreenImpl : SplashScreen {
             Write(0xcccccc, false, "17 ");
             Write(0x666666, false, "**\n               |--------\\ / / /|===|   |   |:::::::::::|  |   ");
             Write(0xcccccc, false, "16 ");
-            Write(0x666666, false, "**\n               |---------\\ / / |===|   |  /|:::::::::::|  |   ");
+            Write(0x666666, false, "**\n               |---------\\ / / |===|   |  /|");
+            Write(0x66ff, true, ":::");
+            Write(0x333333, false, ":");
+            Write(0x66ff, true, ":::");
+            Write(0x333333, false, ":");
+            Write(0x66ff, true, ":::");
+            Write(0x666666, false, "|  |   ");
             Write(0xcccccc, false, "15 ");
-            Write(0x666666, false, "**\n               |----------\\ /  |===|  /  //|");
+            Write(0xffff66, false, "**\n           ");
+            Write(0x666666, false, "    |----------\\ /  |===|  /  //|");
             Write(0x333333, false, ":");
             Write(0x66ff, true, ":");
             Write(0x333333, false, ":::");
@@ -130,7 +137,7 @@ class SplashScreenImpl : SplashScreen {
             Write(0xff0000, true, ":::");
             Write(0x333333, false, ":");
             Write(0x9900, true, ":::");
-            Write(0x666666, false, "|  //|     / / /___/ /#/ /#/#/ /   ");
+            Write(0x666666, false, "|  //|     / / /___/ / / / / / /   ");
             Write(0xcccccc, false, " 3 ");
             Write(0xffff66, false, "**\n           ");
             Write(0x666666, false, "    |");
@@ -142,13 +149,13 @@ class SplashScreenImpl : SplashScreen {
             Write(0x9900, true, ":");
             Write(0x333333, false, ":");
             Write(0x9900, true, ":");
-            Write(0x666666, false, "| //|     /    ___            /    ");
+            Write(0x666666, false, "| //|     /   /___/           /    ");
             Write(0xcccccc, false, " 2 ");
             Write(0xffff66, false, "**\n           ");
             Write(0x666666, false, "    |");
             Write(0x333333, false, "::::::::");
             Write(0x9900, true, ":::");
-            Write(0x666666, false, "|//|     / / /   /_/_/_/#/#/#/     ");
+            Write(0x666666, false, "|//|     / / /   /_/_/_/_/_/_/     ");
             Write(0xcccccc, false, " 1 ");
             Write(0xffff66, false, "**\n           ");
             Write(0x666666, false, "  ==============//======+...+====================       \n             - - - - - - -// - - -/   / - -");
