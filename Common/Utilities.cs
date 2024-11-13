@@ -37,6 +37,6 @@ public static class Utilities
         {
             Console.Write("_");
         }
-        Console.Write("|");
+        Console.Write($"| {percent}%");
     }
 }
