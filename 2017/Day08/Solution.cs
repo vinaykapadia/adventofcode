@@ -1,7 +1,5 @@
 using System;
 using System.Linq;
-using AdventOfCode.Common;
-using AdventOfCode.Lib;
 
 namespace AdventOfCode._2017.Day08;
 
