@@ -1,7 +1,6 @@
-using System.Linq;
-using AdventOfCode.Model;
+using AdventOfCode.Lib.Model;
 
-namespace AdventOfCode.Generator;
+namespace AdventOfCode.Lib.Generator;
 
 class ProjectReadmeGenerator {
     public string Generate(int firstYear, int lastYear) {

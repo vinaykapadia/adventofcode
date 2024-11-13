@@ -1,11 +1,9 @@
-using System;
-using System.Linq;
 using System.Text;
-using AdventOfCode.Model;
+using AdventOfCode.Lib.Model;
 
-namespace AdventOfCode.Generator;
+namespace AdventOfCode.Lib.Generator;
 
-class SplashScreenGenerator {
+internal class SplashScreenGenerator {
     public string Generate(Calendar calendar) {
         string calendarPrinter = CalendarPrinter(calendar);
         return $@"
@@ -13,7 +11,7 @@ class SplashScreenGenerator {
             |
             |namespace AdventOfCode._{calendar.Year};
             |
-            |class SplashScreenImpl : SplashScreen {{
+            |class SplashScreenImpl : ISplashScreen {{
             |
             |    public void Show() {{
             |
@@ -44,10 +42,6 @@ class SplashScreenGenerator {
             bw.Write(-1, "\n", false);
         }
         return bw.GetContent();
-    }
-
-    bool Matches(string[] selector, object x){
-        return true;
     }
 
     class BufferWriter {

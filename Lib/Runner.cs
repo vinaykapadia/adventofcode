@@ -1,14 +1,13 @@
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace AdventOfCode.Lib;
 
-internal class ProblemName : Attribute {
-    public readonly string Name;
-    public ProblemName(string name) {
-        Name = name;
-    }
+internal class ProblemNameAttribute(string name) : Attribute
+{
+    public readonly string Name = name;
 }
 
 internal interface ISolver {
@@ -30,7 +29,7 @@ internal static class SolverExtensions {
         return (
             solver
                 .GetType()
-                .GetCustomAttribute(typeof(ProblemName)) as ProblemName ?? new ProblemName("")
+                .GetCustomAttribute(typeof(ProblemNameAttribute)) as ProblemNameAttribute ?? new ProblemNameAttribute("")
         ).Name;
     }
 
@@ -65,11 +64,22 @@ internal static class SolverExtensions {
         return WorkingDir(solver.Year(), solver.Day());
     }
 
-    public static SplashScreen SplashScreen(this ISolver solver) {
+    public static ISplashScreen SplashScreen(this ISolver solver) {
         var tSplashScreen = Assembly.GetEntryAssembly()?.GetTypes()
-             .Where(t => t.GetTypeInfo().IsClass && typeof(SplashScreen).IsAssignableFrom(t))
+             .Where(t => t.GetTypeInfo().IsClass && typeof(ISplashScreen).IsAssignableFrom(t))
              .Single(t => Year(t) == solver.Year());
-        return (SplashScreen)Activator.CreateInstance(tSplashScreen ?? Assembly.GetCallingAssembly().GetTypes()[0]);
+        return (ISplashScreen)Activator.CreateInstance(tSplashScreen ?? Assembly.GetCallingAssembly().GetTypes()[0]);
+    }
+
+    public static int Sloc(this ISolver solver)
+    {
+	    var file = solver.WorkingDir() + "/Solution.cs";
+	    if (File.Exists(file))
+	    {
+		    var solution = File.ReadAllText(file);
+		    return Regex.Matches(solution, @"\n").Count;
+	    }
+	    return -1;
     }
 }
 
@@ -79,7 +89,7 @@ internal class Runner {
 
     private static string GetNormalizedInput(string file) {
         var input = File.ReadAllText(file);
-        if (input.EndsWith("\n")) {
+        if (input.EndsWith('\n')) {
             input = input[..^1];
         }
         return input;
@@ -128,25 +138,32 @@ internal class Runner {
             stopwatch.Restart();
         }
 
-        return new SolverResult(answers.ToArray(), errors.ToArray());
+        return new SolverResult([.. answers], [.. errors]);
     }
 
     public static void RunAll(params ISolver[] solvers) {
         var errors = new List<string>();
 
         var lastYear = -1;
+        List<(int day, int sloc)> slocs = new();
         foreach (var solver in solvers) {
-            if (lastYear != solver.Year()) {
-                solver.SplashScreen().Show();
+            if (lastYear != solver.Year())
+            {
+	            SlocChart.Show(slocs);
+	            slocs.Clear();
+
+				solver.SplashScreen().Show();
                 lastYear = solver.Year();
             }
 
-            var result = RunSolver(solver);
+            slocs.Add((solver.Day(), solver.Sloc()));
+			var result = RunSolver(solver);
             WriteLine();
             errors.AddRange(result.Errors);
         }
 
-        WriteLine();
+        SlocChart.Show(slocs);
+		WriteLine();
 
         if (errors.Any()) {
             WriteLine(ConsoleColor.Red, "Errors:\n" + string.Join("\n", errors));

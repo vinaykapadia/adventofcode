@@ -1,26 +1,20 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using AdventOfCode.Generator;
 using AdventOfCode.Lib.Generator;
-using AdventOfCode.Model;
+using AdventOfCode.Lib.Model;
 using AngleSharp;
 using AngleSharp.Io;
 
 namespace AdventOfCode.Lib;
 
-class Updater
+internal class Updater
 {
-
     public async Task Update(int year, int day)
     {
-
         var session = GetSession();
         var baseAddress = new Uri("https://adventofcode.com/");
 
@@ -42,7 +36,7 @@ class Updater
 
         var years = Assembly.GetEntryAssembly().GetTypes()
             .Where(t => t.GetTypeInfo().IsClass && typeof(ISolver).IsAssignableFrom(t))
-            .Select(tsolver => SolverExtensions.Year(tsolver));
+            .Select(SolverExtensions.Year);
 
         UpdateProjectReadme(years.Min(), years.Max());
         UpdateReadmeForYear(calendar);
@@ -223,7 +217,7 @@ class Updater
 
         return Problem.Parse(
             year, day, baseUri + $"{year}/day/{day}", problemStatement,
-            new StreamReader(input.Content).ReadToEnd()
+            await new StreamReader(input.Content).ReadToEndAsync()
         );
     }
 

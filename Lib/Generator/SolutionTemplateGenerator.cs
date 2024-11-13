@@ -1,10 +1,10 @@
-using AdventOfCode.Model;
+using AdventOfCode.Lib.Model;
 
 namespace AdventOfCode.Lib.Generator;
 
-class SolutionTemplateGenerator {
+internal class SolutionTemplateGenerator {
     public string Generate(Problem problem) {
-        return $@"namespace AdventOfCode._{problem.Year}.Day{problem.Day.ToString("00")};
+        return $@"namespace AdventOfCode._{problem.Year}.Day{problem.Day:00};
              |
              |[ProblemName(""{problem.Title}"")]      
              |internal class Solution : ISolver

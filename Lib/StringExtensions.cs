@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace AdventOfCode;
@@ -19,4 +18,11 @@ public static class StringExtensions {
         );
         return firstLine ? indent + res : res;
     }
+
+    public static ColoredString WithColor(this string st, ConsoleColor c)
+    {
+	    return new ColoredString(c, st);
+    }
 }
+
+public record ColoredString(ConsoleColor c, string st);

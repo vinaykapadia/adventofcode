@@ -1,11 +1,7 @@
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 using AngleSharp.Dom;
 
-namespace AdventOfCode.Model;
+namespace AdventOfCode.Lib.Model;
 class Problem {
     public string Title { get; private set; }
     public string ContentMd { get; private set; }

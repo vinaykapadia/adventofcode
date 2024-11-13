@@ -1,12 +1,9 @@
-using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
 using System.Text;
+using System.Text.RegularExpressions;
 using AngleSharp.Dom;
 
-namespace AdventOfCode.Model;
+namespace AdventOfCode.Lib.Model;
 
 class CalendarToken {
     public string Text { get; set; }
