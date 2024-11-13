@@ -3,7 +3,7 @@ using System;
 
 namespace AdventOfCode._2016;
 
-class SplashScreenImpl : SplashScreen {
+class SplashScreenImpl : ISplashScreen {
 
     public void Show() {
 
