@@ -4,7 +4,7 @@ internal class SlocChart
 {
 	public static void Show(List<(int day, int sloc)> slocs)
 	{
-		if (slocs.Count < 2)
+		if (slocs.Count < 1)
 		{
 			return;
 		}
