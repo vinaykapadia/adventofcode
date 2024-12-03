@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AdventOfCode.Lib.Generator;
 using AdventOfCode.Lib.Model;
 using AngleSharp;
+using AngleSharp.Dom;
 using AngleSharp.Io;
 
 namespace AdventOfCode.Lib;
