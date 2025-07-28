@@ -42,23 +42,23 @@ public partial struct Rational : IEquatable<Rational>, IFormattable
     public long Numerator { get; private set; }
     public long Denominator { get; private set; }
 
-    public bool IsValid => Denominator != 0;
+    public readonly bool IsValid => Denominator != 0;
 
-    public static Common.Rational.Rational Empty => new();
-    public static Common.Rational.Rational Zero => new(0);
-    public static Common.Rational.Rational One => new(1);
+    public static Rational Empty => new();
+    public static Rational Zero => new(0);
+    public static Rational One => new(1);
 
-    public bool Equals(Common.Rational.Rational other)
+    public readonly bool Equals(Rational other)
     {
         return Numerator == other.Numerator && Denominator == other.Denominator;
     }
 
-    public override bool Equals(object obj)
+    public override readonly bool Equals(object obj)
     {
-        return obj is Common.Rational.Rational rational && Equals(rational);
+        return obj is Rational rational && Equals(rational);
     }
 
-    public override int GetHashCode()
+    public override readonly int GetHashCode()
     {
         unchecked
         {
@@ -66,12 +66,12 @@ public partial struct Rational : IEquatable<Rational>, IFormattable
         }
     }
 
-    public override string ToString()
+    public override readonly string ToString()
     {
         return ToString("L", null);
     }
 
-    public string ToString(string format, IFormatProvider provider)
+    public readonly string ToString(string format, IFormatProvider provider)
     {
         if (string.IsNullOrWhiteSpace(format))
             format = "L";

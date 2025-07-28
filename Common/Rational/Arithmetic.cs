@@ -2,22 +2,22 @@
 
 public partial struct Rational
 {
-    public Rational Negate()
+    public readonly Rational Negate()
     {
         return new Rational(-Numerator, Denominator);
     }
 
-    public Rational Invert()
+    public readonly Rational Invert()
     {
         return new Rational(Denominator, Numerator);
     }
 
-    public Rational Add(Rational rational)
+    public readonly Rational Add(Rational rational)
     {
         return Add(rational.Numerator, rational.Denominator);
     }
 
-    public Rational Add(long value)
+    public readonly Rational Add(long value)
     {
         checked
         {
@@ -25,12 +25,12 @@ public partial struct Rational
         }
     }
 
-    public Rational Subtract(Rational rational)
+    public readonly Rational Subtract(Rational rational)
     {
         return Add(-rational.Numerator, rational.Denominator);
     }
 
-    public Rational Subtract(long value)
+    public readonly Rational Subtract(long value)
     {
         checked
         {
@@ -38,12 +38,12 @@ public partial struct Rational
         }
     }
 
-    public Rational Multiply(Rational rational)
+    public readonly Rational Multiply(Rational rational)
     {
         return Multiply(rational.Numerator, rational.Denominator);
     }
 
-    public Rational Multiply(long value)
+    public readonly Rational Multiply(long value)
     {
         checked
         {
@@ -51,12 +51,12 @@ public partial struct Rational
         }
     }
 
-    public Rational Divide(Rational rational)
+    public readonly Rational Divide(Rational rational)
     {
         return Multiply(rational.Denominator, rational.Numerator);
     }
 
-    public Rational Divide(long value)
+    public readonly Rational Divide(long value)
     {
         checked
         {
@@ -64,32 +64,12 @@ public partial struct Rational
         }
     }
 
-    private Rational Add(long numerator, long denominator)
-    {
-        checked
-        {
-            return
-                Denominator == denominator
-                    ? new Rational(Numerator + numerator, denominator)
-                    : new Rational(Numerator * denominator + numerator * Denominator,
-                        Denominator * denominator);
-        }
-    }
-
-    private Rational Multiply(long numerator, long denominator)
-    {
-        checked
-        {
-            return new Rational(Numerator * numerator, Denominator * denominator);
-        }
-    }
-
-    public Rational Abs()
+    public readonly Rational Abs()
     {
         return Numerator < 0 ? new Rational(-Numerator, Denominator) : this;
     }
 
-    public Rational Round(IList<long> targetDenominators)
+    public readonly Rational Round(IList<long> targetDenominators)
     {
         var sign = Numerator < 0 ? -1 : 1;
         var numerator = Numerator * sign;
@@ -116,5 +96,25 @@ public partial struct Rational
         }
 
         return best;
-    }
+	}
+
+	private readonly Rational Add(long numerator, long denominator)
+	{
+		checked
+		{
+			return
+				Denominator == denominator
+					? new Rational(Numerator + numerator, denominator)
+					: new Rational(Numerator * denominator + numerator * Denominator,
+						Denominator * denominator);
+		}
+	}
+
+	private readonly Rational Multiply(long numerator, long denominator)
+	{
+		checked
+		{
+			return new Rational(Numerator * numerator, Denominator * denominator);
+		}
+	}
 }

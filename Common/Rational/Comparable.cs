@@ -2,7 +2,7 @@
 
 public partial struct Rational : IComparable<Rational>, IComparable
 {
-    public int CompareTo(Rational other)
+    public readonly int CompareTo(Rational other)
     {
         long diff;
 
@@ -29,7 +29,7 @@ public partial struct Rational : IComparable<Rational>, IComparable
         return diff == 0 ? 0 : diff > 0 ? 1 : -1;
     }
 
-    public int CompareTo(object value)
+    public readonly int CompareTo(object value)
     {
         if (value == null)
             return 1;

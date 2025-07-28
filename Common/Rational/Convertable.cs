@@ -7,82 +7,82 @@ public partial struct Rational : IConvertible
         throw new InvalidOperationException();
     }
 
-    public bool ToBoolean(IFormatProvider provider)
+    public readonly bool ToBoolean(IFormatProvider provider)
     {
         return Numerator != 0;
     }
 
-    public char ToChar(IFormatProvider provider)
+	public readonly char ToChar(IFormatProvider provider)
     {
         throw new InvalidCastException("no valid cast to char");
     }
 
-    public sbyte ToSByte(IFormatProvider provider)
+	public readonly sbyte ToSByte(IFormatProvider provider)
     {
         return (sbyte)(Numerator / Denominator);
     }
 
-    public byte ToByte(IFormatProvider provider)
+	public readonly byte ToByte(IFormatProvider provider)
     {
         return (byte)(Numerator / Denominator);
     }
 
-    public short ToInt16(IFormatProvider provider)
+	public readonly short ToInt16(IFormatProvider provider)
     {
         return (short)(Numerator / Denominator);
     }
 
-    public ushort ToUInt16(IFormatProvider provider)
+	public readonly ushort ToUInt16(IFormatProvider provider)
     {
         return (ushort)(Numerator / Denominator);
     }
 
-    public int ToInt32(IFormatProvider provider)
+	public readonly int ToInt32(IFormatProvider provider)
     {
         return (int)(Numerator / Denominator);
     }
 
-    public uint ToUInt32(IFormatProvider provider)
+	public readonly uint ToUInt32(IFormatProvider provider)
     {
         return (uint)(Numerator / Denominator);
     }
 
-    public long ToInt64(IFormatProvider provider)
+	public readonly long ToInt64(IFormatProvider provider)
     {
         return Numerator / Denominator;
     }
 
-    public ulong ToUInt64(IFormatProvider provider)
+	public readonly ulong ToUInt64(IFormatProvider provider)
     {
         return (ulong)(Numerator / Denominator);
     }
 
-    public float ToSingle(IFormatProvider provider)
+	public readonly float ToSingle(IFormatProvider provider)
     {
         return (float)((double)Numerator / Denominator);
     }
 
-    public double ToDouble(IFormatProvider provider)
+	public readonly double ToDouble(IFormatProvider provider)
     {
         return (double)Numerator / Denominator;
     }
 
-    public decimal ToDecimal(IFormatProvider provider)
+	public readonly decimal ToDecimal(IFormatProvider provider)
     {
         return (decimal)Numerator / Denominator;
     }
 
-    public DateTime ToDateTime(IFormatProvider provider)
+	public readonly DateTime ToDateTime(IFormatProvider provider)
     {
         throw new InvalidCastException("no valid cast to DateTime");
     }
 
-    public string ToString(IFormatProvider provider)
+	public readonly string ToString(IFormatProvider provider)
     {
         return ToString("L", provider);
     }
 
-    public object ToType(Type type, IFormatProvider provider)
+	public readonly object ToType(Type type, IFormatProvider provider)
     {
         return Type.GetTypeCode(type) switch
         {

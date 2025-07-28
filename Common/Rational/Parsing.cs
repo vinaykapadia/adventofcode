@@ -4,9 +4,9 @@ public partial struct Rational
 {
     public static Rational Parse(string s)
     {
-        if (s == null) throw new ArgumentNullException(nameof(s));
+		ArgumentNullException.ThrowIfNull(s);
 
-        if (!TryParse(s, out var rational)) throw new FormatException();
+		if (!TryParse(s, out var rational)) throw new FormatException();
         return rational;
     }
 

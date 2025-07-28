@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace AdventOfCode.Common.Tree
+﻿namespace AdventOfCode.Common.Tree
 {
     public delegate void TreeVisitor<in T>(T nodeData);
 
